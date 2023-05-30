@@ -1,1 +1,2 @@
-# cub3d
+# miniRT
+Basic and COOL raytracer
