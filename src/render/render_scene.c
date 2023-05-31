@@ -14,8 +14,11 @@
 
 int	shade_scene(t_scene *scene, int x, int y)
 {
-	(void)scene;
-	(void)x;
-	(void)y;
-	return (rbg_to_int(255, 0, 88));
+	double	_x, _y, eps = 0.1;
+	_x = 4.0 * (double)x / scene->mlx->img[SCENE].res.x - 2.0;
+	_y = 4.0 * (double)y / scene->mlx->img[SCENE].res.y - 2.0;
+	if (_x * _x * _x > _y - eps && _x * _x * _x < _y + eps)
+		return (rbg_to_int(200, 200, 200));
+	else
+		return (rbg_to_int(240, 45, 125));
 }

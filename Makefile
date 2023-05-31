@@ -6,7 +6,7 @@
 #    By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/25 01:42:35 by alopez-g          #+#    #+#              #
-#    Updated: 2023/05/31 12:02:47 by alopez-g         ###   ########.fr        #
+#    Updated: 2023/06/01 01:15:26 by alopez-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ H		=	$(wildcard $(H_DIR)/*.h)
 #----- SRC ----
 SRC_DIR	=	$(PROJECT_DIR)/src
 SRC		=	$(wildcard $(SRC_DIR)/*.c) \
-			$(wildcard $(SRC_DIR)/**/*.c)
+			$(wildcard $(SRC_DIR)/**/*.c) \
+			$(wildcard $(SRC_DIR)/**/**/*.c)
 #----- OBJ -----
 OBJ_DIR	=	$(PROJECT_DIR)/obj
 OBJ		=	$(subst $(SRC_DIR), $(OBJ_DIR), $(SRC:.c=.o))

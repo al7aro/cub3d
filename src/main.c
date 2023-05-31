@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:23:44 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/01 00:50:48 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/01 01:30:46 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ void	l(void)
 void	mlx_setup(t_scene *scene)
 {
 	scene->mlx->mlx = mlx_init();
-	scene->mlx->win[SCENE] = mlx_new_window(scene->mlx->mlx,
-			scene->mlx->img[SCENE].res.x, scene->mlx->img[SCENE].res.y, "cub3d");
 	scene->mlx->win[RAYS] = mlx_new_window(scene->mlx->mlx,
 			scene->mlx->img[RAYS].res.x, scene->mlx->img[RAYS].res.y, "raycasting");
+	scene->mlx->win[SCENE] = mlx_new_window(scene->mlx->mlx,
+			scene->mlx->img[SCENE].res.x, scene->mlx->img[SCENE].res.y, "cub3d");
 	scene->mlx->img[SCENE].img = mlx_new_image(scene->mlx->mlx,
 			scene->mlx->img[SCENE].res.x, scene->mlx->img[SCENE].res.y);
 	scene->mlx->img[RAYS].img = mlx_new_image(scene->mlx->mlx,
