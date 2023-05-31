@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.h                                            :+:      :+:    :+:   */
+/*   render.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 13:56:16 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/01 00:37:46 by alopez-g         ###   ########.fr       */
+/*   Created: 2023/06/01 00:08:34 by alopez-g          #+#    #+#             */
+/*   Updated: 2023/06/01 00:09:38 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOR_H
-# define COLOR_H
+#include "render.h"
 
-int	rbg_to_int(unsigned char r, unsigned char g, unsigned char b);
-int	int_to_r(int col);
-int	int_to_g(int col);
-int	int_to_b(int col);
-int	int_to_a(int col);
-
-#endif
+int	shade_scene(t_scene *scene, int x, int y)
+{
+	(void)scene;
+	(void)x;
+	(void)y;
+	return (rbg_to_int(255, 0, 88));
+}

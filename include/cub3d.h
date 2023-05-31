@@ -6,12 +6,18 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 01:03:56 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/05/31 22:25:05 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/01 00:42:50 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+
+/* Res */
+# define SCENE_WIDTH 500
+# define SCENE_HEIGHT 500
+# define RAYS_WIDTH 500
+# define RAYS_HEIGHT 200
 
 /* Tex Indices */
 # define NORTH 0
@@ -29,10 +35,21 @@
 
 # include "math_cub.h"
 
+typedef struct s_img
+{
+	t_vec2	res;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_size;
+	int		endian;
+}				t_img;
+
 typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win[2];
+	t_img	img[2];
 }				t_mlx;
 
 typedef struct s_tex

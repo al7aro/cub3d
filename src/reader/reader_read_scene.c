@@ -6,11 +6,11 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:24:12 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/05/31 22:27:23 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/05/31 23:37:04 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "reader_map.h"
+#include "reader.h"
 
 static void	tex_log(int index, char *tex_path)
 {

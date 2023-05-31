@@ -6,11 +6,11 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 21:44:28 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/05/31 22:27:15 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/01 00:38:12 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "reader_map.h"
+#include "reader.h"
 
 int	check_int(char *const line, size_t *i)
 {
@@ -60,6 +60,5 @@ int	read_color(char *const line)
 	while (*(line + i) != ',')
 		i++;
 	b = ((double)ft_atoi(line + ++i));
-	return (rbg_to_int((unsigned char)r, (unsigned char)g, (unsigned char)b,
-			(unsigned char)255));
+	return (rbg_to_int((unsigned char)r, (unsigned char)g, (unsigned char)b));
 }

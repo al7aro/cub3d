@@ -6,19 +6,16 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:23:44 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/05/31 22:26:02 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/01 00:50:48 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "mlx.h"
 #include "libft.h"
-#include "reader_map.h"
+#include "reader.h"
 #include "cub3d.h"
-#include "scene_utils.h"
-
-#define WIDTH 600
-#define HEIGHT 600
+#include "hook.h"
 
 void	l(void)
 {
@@ -29,9 +26,30 @@ void	mlx_setup(t_scene *scene)
 {
 	scene->mlx->mlx = mlx_init();
 	scene->mlx->win[SCENE] = mlx_new_window(scene->mlx->mlx,
-			WIDTH, HEIGHT, "cub3d");
+			scene->mlx->img[SCENE].res.x, scene->mlx->img[SCENE].res.y, "cub3d");
 	scene->mlx->win[RAYS] = mlx_new_window(scene->mlx->mlx,
-			WIDTH, HEIGHT, "raycasting");
+			scene->mlx->img[RAYS].res.x, scene->mlx->img[RAYS].res.y, "raycasting");
+	scene->mlx->img[SCENE].img = mlx_new_image(scene->mlx->mlx,
+			scene->mlx->img[SCENE].res.x, scene->mlx->img[SCENE].res.y);
+	scene->mlx->img[RAYS].img = mlx_new_image(scene->mlx->mlx,
+			scene->mlx->img[RAYS].res.x, scene->mlx->img[RAYS].res.y);
+	scene->mlx->img[SCENE].addr = mlx_get_data_addr(scene->mlx->img[SCENE].img,
+			&scene->mlx->img[SCENE].bpp,
+			&scene->mlx->img[SCENE].line_size,
+			&scene->mlx->img[SCENE].endian);
+	scene->mlx->img[RAYS].addr = mlx_get_data_addr(scene->mlx->img[RAYS].img,
+			&scene->mlx->img[RAYS].bpp,
+			&scene->mlx->img[RAYS].line_size,
+			&scene->mlx->img[RAYS].endian);
+}
+
+int	clean_exit(void *scene_void)
+{
+	t_scene	*scene;
+
+	scene = (t_scene *)scene_void;
+	scene_clean(scene);
+	exit(0);
 }
 
 int	main(int argc, char **argv)
@@ -48,12 +66,11 @@ int	main(int argc, char **argv)
 		return (-1);
 	}
 	mlx_setup(&scene);
-	mlx_put_image_to_window(scene.mlx->mlx, scene.mlx->win[SCENE],
-		scene.tex[NORTH].img, 0, 0);
-	mlx_put_image_to_window(scene.mlx->mlx, scene.mlx->win[RAYS],
-		scene.tex[EAST].img, 0, 0);
 	printf("\n~mlx_loop running~\n");
-	// mlx_loop(scene.mlx->mlx);
+	mlx_hook(scene.mlx->win[SCENE], 17, 0, clean_exit, &scene);
+	mlx_hook(scene.mlx->win[RAYS], 17, 0, clean_exit, &scene);
+	mlx_loop_hook(scene.mlx->mlx, on_loop, &scene);
+	mlx_loop(scene.mlx->mlx);
 	scene_clean(&scene);
 	return (0);
 }

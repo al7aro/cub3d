@@ -6,11 +6,11 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 00:53:16 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/05/31 22:32:47 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/01 00:49:38 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scene_utils.h"
+#include "reader.h"
 
 void	scene_log_map(t_scene *scene)
 {
@@ -53,11 +53,13 @@ void	scene_setup(t_scene *scene)
 	scene->tex[EAST].addr = (void *)0;
 	scene->map = (char **)malloc(sizeof(char *));
 	scene->map[0] = ft_strdup(" ");
+	scene->map_size = (t_vec2){.x = 1, .y = 1};
+	scene->player.dir = (t_vec2){.x = 0.0, .y = 0.0};
 	scene->col[CIELLING] = 0;
 	scene->col[FLOOR] = 0;
 	scene->mlx = (t_mlx *)malloc(sizeof(t_mlx));
-	scene->player.dir = (t_vec2){.x = 0.0, .y = 0.0};
-	scene->map_size = (t_vec2){.x = 1, .y = 1};
+	scene->mlx->img[SCENE].res = (t_vec2){.x = SCENE_WIDTH, .y = SCENE_HEIGHT};
+	scene->mlx->img[RAYS].res = (t_vec2){.x = RAYS_WIDTH, .y = RAYS_HEIGHT};
 }
 
 void	scene_clean(t_scene *scene)
@@ -70,6 +72,10 @@ void	scene_clean(t_scene *scene)
 		mlx_destroy_image(scene->mlx->mlx, scene->tex[WEST].img);
 	if (scene->tex[EAST].img)
 		mlx_destroy_image(scene->mlx->mlx, scene->tex[EAST].img);
+	if (scene->mlx->img[SCENE].img)
+		mlx_destroy_image(scene->mlx->mlx, scene->mlx->img[SCENE].img);
+	if (scene->mlx->img[RAYS].img)
+		mlx_destroy_image(scene->mlx->mlx, scene->mlx->img[RAYS].img);
 	while (--scene->map_size.y >= 0)
 		if (scene->map[(int)scene->map_size.y])
 			free(scene->map[(int)scene->map_size.y]);

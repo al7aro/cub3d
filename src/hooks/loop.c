@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.h                                            :+:      :+:    :+:   */
+/*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 13:56:16 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/01 00:37:46 by alopez-g         ###   ########.fr       */
+/*   Created: 2023/05/31 23:38:13 by alopez-g          #+#    #+#             */
+/*   Updated: 2023/06/01 00:40:45 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOR_H
-# define COLOR_H
+#include "hook.h"
 
-int	rbg_to_int(unsigned char r, unsigned char g, unsigned char b);
-int	int_to_r(int col);
-int	int_to_g(int col);
-int	int_to_b(int col);
-int	int_to_a(int col);
-
-#endif
+int	on_loop(t_scene *scene)
+{
+	render(scene, SCENE);
+	render(scene, RAYS);
+	return (0);
+}

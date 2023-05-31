@@ -6,11 +6,11 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:24:04 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/04/23 00:56:59 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/05/31 23:36:01 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error_list.h"
+#include "reader.h"
 
 void	error_list_init(t_error_list *err_list)
 {

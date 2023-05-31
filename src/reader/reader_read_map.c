@@ -6,12 +6,11 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 20:11:27 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/05/31 22:26:34 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/05/31 23:37:09 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "reader_map.h"
-#include "cub3d.h"
+#include "reader.h"
 
 static char	is_player(char c)
 {

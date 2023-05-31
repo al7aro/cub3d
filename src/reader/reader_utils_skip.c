@@ -6,11 +6,11 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 21:44:28 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/05/31 20:14:37 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/05/31 23:37:00 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "reader_map.h"
+#include "reader.h"
 
 int	skip_space(char *const line)
 {

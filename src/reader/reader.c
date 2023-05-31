@@ -6,11 +6,11 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:24:14 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/05/31 22:26:18 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/01 00:28:25 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "reader_map.h"
+#include "reader.h"
 
 void	map_add_line(t_scene *scene, char *const line);
 
@@ -44,6 +44,7 @@ t_map_error	reader(t_scene *scene, char *const path)
 	t_error_list	err_list;
 	char			ret;
 
+	ret = OK;
 	error_list_init(&err_list);
 	fd = open(path, O_RDONLY);
 	if (-1 == fd)

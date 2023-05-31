@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene_utils.h                                      :+:      :+:    :+:   */
+/*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/23 00:02:00 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/05/31 21:48:29 by alopez-g         ###   ########.fr       */
+/*   Created: 2023/06/01 00:08:46 by alopez-g          #+#    #+#             */
+/*   Updated: 2023/06/01 00:41:27 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_UTILS_H
-# define SCENE_UTILS_H
+#ifndef RENDER_H
+# define RENDER_H
 
 # include "cub3d.h"
-# include "libft.h"
-# include "macro.h"
-# include <mlx.h>
-# include <stdlib.h>
-# include <stdio.h>
+# include "mlx.h"
+# include "color.h"
 
-void	scene_log_map(t_scene *scene);
-void	scene_clean(t_scene *scene);
-void	scene_setup(t_scene *scene);
+int		pixel_buffer_put(t_img *img, int x, int y, int c);
+void	render(t_scene *scene, int type);
+
+int		shade_scene(t_scene *scene, int x, int y);
+int		shade_rays(t_scene *scene, int x, int y);
 
 #endif

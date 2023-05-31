@@ -6,16 +6,15 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 13:56:24 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/05/31 13:59:22 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/01 00:37:42 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "color.h"
 
-int	rbg_to_int(unsigned char r, unsigned char g, unsigned char b,
-	unsigned char a)
+int	rbg_to_int(unsigned char r, unsigned char g, unsigned char b)
 {
-	return (a << 24 | r << 16 | g << 8 | b);
+	return (0 << 24 | r << 16 | g << 8 | b);
 }
 
 int	int_to_a(int col)
