@@ -54,3 +54,4 @@ dkms.conf
 # cub3d
 compile_commands.json
 cub3d
+.vscode
