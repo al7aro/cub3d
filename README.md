@@ -1,5 +1,3 @@
-# miniRT
-Basic and COOL raytracer
 # cub3d 🧊
 
 ## Map file
