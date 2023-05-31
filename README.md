@@ -29,8 +29,8 @@ SO ./assets/textures/south_texture.xmp	# Texture of south-facing walls
 WE ./assets/textures/west_texture.xmp	# Texture of west-facing walls
 EA ./assets/textures/east_texture.xmp	# Texture of east-facing walls
 
-F 50,100,10								# Floor color
-C 100,100,100							# Ceilling color
+F 50,100,10		# Floor color
+C 100,100,100	# Ceilling color
 
 # Closed Map (Without #)
 
@@ -68,8 +68,8 @@ SO ./assets/textures/south_texture.xmp	# Texture of south-facing walls
 WE ./assets/textures/west_texture.xmp	# Texture of west-facing walls
 E ./assets/textures/east_texture.xmp	# Texture of east-facing walls
 
-F 50,100,300							# Floor color
-C 100,100,100							# Ceilling color
+F 50,100,300	# Floor color
+C 100,100,100	# Ceilling color
 
 # Closed Map (Without #)
 
