@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alfgarci <alfgarci@student.42madrid.com>   +#+  +:+       +#+         #
+#    By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/18 18:44:21 by alfgarci          #+#    #+#              #
-#    Updated: 2022/09/25 17:46:03 by alfgarci         ###   ########.fr        #
+#    Updated: 2023/04/22 20:38:26 by alopez-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_DIR	=	src
 
 SRCS	=	${SRC_DIR}/ft_atoi.c \
+			${SRC_DIR}/ft_atof.c \
 			${SRC_DIR}/ft_bzero.c \
 			${SRC_DIR}/ft_calloc.c \
 			${SRC_DIR}/ft_isalnum.c \
@@ -75,7 +76,7 @@ NAME 	=	libft.a
 
 ${NAME}:	${OBJS}
 		ar rc ${NAME} ${OBJS}
-	
+
 all:		${NAME}
 
 clean:
@@ -86,4 +87,4 @@ fclean:		clean
 
 re:		fclean all
 
-.PHONY:	all clean fclean  
+.PHONY:	all clean fclean

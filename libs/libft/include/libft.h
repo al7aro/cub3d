@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alfgarci <alfgarci@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 18:35:38 by alfgarci          #+#    #+#             */
-/*   Updated: 2022/10/20 16:53:35 by alfgarci         ###   ########.fr       */
+/*   Updated: 2023/04/22 20:47:50 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int		ft_atoi(const char *str);
+double	ft_atof(const char *str);
 void	ft_bzero(void *b, size_t len);
 void	*ft_calloc(size_t count, size_t size);
 int		ft_isalnum(int c);

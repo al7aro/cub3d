@@ -6,7 +6,7 @@
 #    By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/25 01:42:35 by alopez-g          #+#    #+#              #
-#    Updated: 2023/05/30 16:01:17 by alopez-g         ###   ########.fr        #
+#    Updated: 2023/05/31 12:02:47 by alopez-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME		=	cub3d
 PROJECT_DIR	=	.
 #----- HEADER -----
 H_DIR	=	$(PROJECT_DIR)/include
-H		=	$(wildcard $(H_DIR)/**/*.h)
+H		=	$(wildcard $(H_DIR)/*.h)
 #----- SRC ----
 SRC_DIR	=	$(PROJECT_DIR)/src
 SRC		=	$(wildcard $(SRC_DIR)/*.c) \
@@ -47,12 +47,15 @@ LIB_FLAGS	=	-framework OpenGL -framework AppKit \
 all: $(OBJ_DIR) $(NAME)
 
 $(OBJ_DIR):
-	mkdir $(dir $(OBJ))
+	mkdir -p $(dir $(OBJ))
 
 $(NAME): $(OBJ)
 	@make -s -C ${MLX_DIR}
 	@make -s -C ${LIBFT_DIR}
 	$(CC) $(LIB_FLAGS) $(OBJ) -o $@
+
+debug: C_FLAGS += -g -D DEBUG
+debug: re
 
 clean:
 	@make -s -C $(MLX_DIR) clean
@@ -67,7 +70,7 @@ fclean: clean
 re: fclean all
 
 n:
-	norminette
+	norminette ${SRC} ${H}
 
 #----- IMPICIT RULES -----
 $(addprefix $(OBJ_DIR)/, %.o):	$(addprefix $(SRC_DIR)/, %.c) $(H)
