@@ -19,6 +19,7 @@
 # include "cub3d.h"
 # include "color.h"
 # include "macro.h"
+# include "scene_utils.h"
 # include <mlx.h>
 
 /* Error Handling */
@@ -71,11 +72,5 @@ char		is_space(char c);
 int			check_int(char *const line, size_t *i);
 int			check_color(char *const line, size_t *i);
 int			read_color(char *const line);
-
-/* Utils */
-void		scene_log_map(t_scene *scene);
-void		scene_clean(t_scene *scene);
-void		scene_setup(t_scene *scene);
-void		mlx_setup(t_scene *scene);
 
 #endif

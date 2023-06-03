@@ -6,11 +6,12 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:23:44 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/03 23:09:44 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/04 00:19:17 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include "scene_utils.h"
 #include "mlx.h"
 #include "libft.h"
 #include "reader.h"
