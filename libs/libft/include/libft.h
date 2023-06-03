@@ -20,6 +20,10 @@
 # include <stdarg.h>
 # define BUFFER_SIZE 42
 
+# ifndef OPEN_MAX
+#  define OPEN_MAX 128
+# endif
+
 typedef struct s_list
 {
 	void			*content;
