@@ -25,11 +25,6 @@ SRC		=	$(wildcard $(SRC_DIR)/*.c) \
 OBJ_DIR	=	$(PROJECT_DIR)/obj
 OBJ		=	$(subst $(SRC_DIR), $(OBJ_DIR), $(SRC:.c=.o))
 
-#----- MLX -----
-MLX_LIB		=	mlx
-MLX_LIB_DIR	=	$(PROJECT_DIR)/libs/mlx
-MLX_DIR		=	$(PROJECT_DIR)/libs/mlx
-MLX_H_DIR	=	$(MLX_DIR)/include
 #----- LIBFT -----
 LIBFT_LIB		=	ft
 LIBFT_LIB_DIR	=	$(PROJECT_DIR)/libs/libft
@@ -40,9 +35,29 @@ LIBFT_H_DIR		=	$(LIBFT_DIR)/include
 CC			=	gcc
 H_FLAGS		=	-I$(H_DIR) -I$(MLX_H_DIR) -I$(LIBFT_H_DIR)
 C_FLAGS		=	-c -Wall -Wextra -Werror
-LIB_FLAGS	=	-framework OpenGL -framework AppKit \
-				-L$(MLX_LIB_DIR) -l$(MLX_LIB) \
-				-L$(LIBFT_LIB_DIR) -l$(LIBFT_LIB)
+
+ifneq ($(OS),Windows_NT)
+    UNAME_S := $(shell uname -s)
+    ifeq ($(UNAME_S),Linux)
+		# ----- If Linux -----
+		MLX_LIB		=	mlx_Linux
+		MLX_LIB_DIR	=	$(PROJECT_DIR)/libs/mlx_Linux
+		MLX_DIR		=	$(PROJECT_DIR)/libs/mlx_Linux
+		MLX_H_DIR	=	$(MLX_DIR)
+		LIB_FLAGS	=	-L$(MLX_LIB_DIR) -l$(MLX_LIB) -L/usr/lib -lXext -lX11 -lm \
+						-L$(LIBFT_LIB_DIR) -l$(LIBFT_LIB)
+    endif
+    ifeq ($(UNAME_S),Darwin)
+		# ----- If Mac -----
+		MLX_LIB		=	mlx
+		MLX_LIB_DIR	=	$(PROJECT_DIR)/libs/mlx
+		MLX_DIR		=	$(PROJECT_DIR)/libs/mlx
+		MLX_H_DIR	=	$(MLX_DIR)/include
+		LIB_FLAGS	=	-framework OpenGL -framework AppKit \
+						-L$(MLX_LIB_DIR) -l$(MLX_LIB) \
+						-L$(LIBFT_LIB_DIR) -l$(LIBFT_LIB)
+    endif
+endif
 
 #----- RULES
 all: $(OBJ_DIR) $(NAME)
@@ -53,7 +68,7 @@ $(OBJ_DIR):
 $(NAME): $(OBJ)
 	@make -s -C ${MLX_DIR}
 	@make -s -C ${LIBFT_DIR}
-	$(CC) $(LIB_FLAGS) $(OBJ) -o $@
+	$(CC) $(OBJ) $(LIB_FLAGS) -o $@
 
 debug: C_FLAGS += -g -D DEBUG
 debug: re
