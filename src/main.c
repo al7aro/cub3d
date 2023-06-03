@@ -17,11 +17,6 @@
 #include "cub3d.h"
 #include "hook.h"
 
-void	l(void)
-{
-	system("leaks cub3d");
-}
-
 int	clean_exit(void *scene_void)
 {
 	t_scene	*scene;
@@ -35,7 +30,6 @@ int	main(int argc, char **argv)
 {
 	t_scene	scene;
 
-	atexit(l);
 	if (argc != 2)
 		return (-1);
 	scene_setup(&scene);
