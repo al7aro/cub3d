@@ -76,5 +76,6 @@ int			read_color(char *const line);
 void		scene_log_map(t_scene *scene);
 void		scene_clean(t_scene *scene);
 void		scene_setup(t_scene *scene);
+void		mlx_setup(t_scene *scene);
 
 #endif

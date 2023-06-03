@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 00:53:16 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/01 00:49:38 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/03 23:10:15 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,30 @@ void	scene_setup(t_scene *scene)
 	scene->player.dir = (t_vec2){.x = 0.0, .y = 0.0};
 	scene->col[CIELLING] = 0;
 	scene->col[FLOOR] = 0;
+}
+
+void	mlx_setup(t_scene *scene)
+{
 	scene->mlx = (t_mlx *)malloc(sizeof(t_mlx));
 	scene->mlx->img[SCENE].res = (t_vec2){.x = SCENE_WIDTH, .y = SCENE_HEIGHT};
 	scene->mlx->img[RAYS].res = (t_vec2){.x = RAYS_WIDTH, .y = RAYS_HEIGHT};
+	scene->mlx->mlx = mlx_init();
+	scene->mlx->win[RAYS] = mlx_new_window(scene->mlx->mlx,
+			scene->mlx->img[RAYS].res.x, scene->mlx->img[RAYS].res.y, "raycasting");
+	scene->mlx->win[SCENE] = mlx_new_window(scene->mlx->mlx,
+			scene->mlx->img[SCENE].res.x, scene->mlx->img[SCENE].res.y, "cub3d");
+	scene->mlx->img[SCENE].img = mlx_new_image(scene->mlx->mlx,
+			scene->mlx->img[SCENE].res.x, scene->mlx->img[SCENE].res.y);
+	scene->mlx->img[RAYS].img = mlx_new_image(scene->mlx->mlx,
+			scene->mlx->img[RAYS].res.x, scene->mlx->img[RAYS].res.y);
+	scene->mlx->img[SCENE].addr = mlx_get_data_addr(scene->mlx->img[SCENE].img,
+			&scene->mlx->img[SCENE].bpp,
+			&scene->mlx->img[SCENE].line_size,
+			&scene->mlx->img[SCENE].endian);
+	scene->mlx->img[RAYS].addr = mlx_get_data_addr(scene->mlx->img[RAYS].img,
+			&scene->mlx->img[RAYS].bpp,
+			&scene->mlx->img[RAYS].line_size,
+			&scene->mlx->img[RAYS].endian);
 }
 
 void	scene_clean(t_scene *scene)

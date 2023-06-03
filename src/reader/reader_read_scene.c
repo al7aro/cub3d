@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:24:12 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/05/31 23:37:04 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/03 23:09:29 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	reader_texture(t_scene *scene, char *const line,
 	end = skip_to_space(line + start);
 	tex_path = ft_substr(line + start, 0, end);
 	tex_log(type, tex_path);
-	scene->tex[type].img = mlx_xpm_file_to_image(scene->mlx, tex_path,
+	scene->tex[type].img = mlx_xpm_file_to_image(scene->mlx->mlx, tex_path,
 			&scene->tex[type].w, &scene->tex[type].h);
 	if (tex_path)
 		free(tex_path);
