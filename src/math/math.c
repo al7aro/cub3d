@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loop.c                                             :+:      :+:    :+:   */
+/*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 23:38:13 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/01 00:40:45 by alopez-g         ###   ########.fr       */
+/*   Created: 2023/06/05 01:02:54 by alopez-g          #+#    #+#             */
+/*   Updated: 2023/06/05 15:29:43 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hook.h"
+#include "math_cub.h"
 
-int	on_loop(t_scene *scene)
+double	math_len(t_vec2 v1, t_vec2 v2)
 {
-	render(scene, SCENE);
-	render(scene, RAYS);
-	return (0);
+	return (sqrt(pow(v1.x - v2.x, 2) + pow(v1.y - v2.y, 2)));
 }

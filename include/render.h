@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 00:08:46 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/01 01:31:22 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/05 15:27:14 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,30 @@
 # include "color.h"
 # include <math.h>
 
-int		pixel_buffer_put(t_img *img, int x, int y, int c);
-void	render(t_scene *scene, int type);
+typedef struct t_rect
+{
+	double	x;
+	double	y;
+	double	w;
+	double	h;
+}				t_rect;
 
-int		shade_scene(t_scene *scene, int x, int y);
-int		shade_rays(t_scene *scene, int x, int y);
+typedef struct t_line
+{
+	double	x0;
+	double	y0;
+	double	x1;
+	double	y1;
+}				t_line;
+
+int	on_loop(t_scene *scene);
+
+/* Shapes */
+int	draw_point(t_img *img, t_vec2 pos, int c);
+int	draw_rect(t_img *img, t_rect r, int c);
+int	draw_rect_border(t_img *img, t_rect r, int weight, int c);
+int	draw_circle(t_img *img, t_vec2 pos, int r, int c);
+int	draw_background(t_img *img, int c);
+int	draw_line(t_img *img, t_line l, int weight, int c);
 
 #endif

@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_rays.c                                      :+:      :+:    :+:   */
+/*   draw_circle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/01 00:38:43 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/01 01:40:13 by alopez-g         ###   ########.fr       */
+/*   Created: 2023/06/05 01:09:20 by alopez-g          #+#    #+#             */
+/*   Updated: 2023/06/05 15:31:25 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-int	shade_rays(t_scene *scene, int x, int y)
+int	draw_circle(t_img *img, t_vec2 pos, int r, int c)
 {
-	double	_x, _y, eps = 0.2;
-	_x = 20.0 * (double)x / scene->mlx->img[RAYS].res.x - 10.0;
-	_y = 4.0 * (double)y / scene->mlx->img[RAYS].res.y - 2.0;
-	if (sin(_x) > _y - eps && sin(_x) < _y + eps)
-		return (rbg_to_int(200, 200, 200));
-	else
-		return (rbg_to_int(25, 215, 25));
+	int	x;
+	int	y;
+
+	y = pos.y - r - 1;
+	while (++y < pos.y + r)
+	{
+		x = pos.x - r - 1;
+		while (++x < pos.x + r)
+			if (math_len((t_vec2){x, y}, (t_vec2){pos.x, pos.y}) < r)
+				draw_point(img, (t_vec2){.x = x, .y = y}, c);
+	}
+	return (0);
 }

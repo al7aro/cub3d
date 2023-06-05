@@ -98,8 +98,10 @@ C 100,100,100	# Ceilling color
 11111111111111111111111111111111
 
 ```
-TODO:
+# Per-Object Loop
 
-- TESTING
+## SORRY SHADER-TOY
 
----
+The main idea was simulating a program like `shader toy` which only gives you the X and Y position and you calculate the color from it.
+
+But `minilibX` offers different ways to make this job easier, so it is not needed to work like that.
