@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap.h                                          :+:      :+:    :+:   */
+/*   hook_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 23:01:57 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/06 23:46:37 by alopez-g         ###   ########.fr       */
+/*   Created: 2023/06/06 23:33:54 by alopez-g          #+#    #+#             */
+/*   Updated: 2023/06/08 12:32:02 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIMAP_H
-# define MINIMAP_H
+#include "hook.h"
 
-#include "render.h"
-
-# define TILE_SIZE 20 /* pixels */
-# define PLAYER_SPEED 4
-
-#endif
+int	esc_exit(int keycode, t_scene *scene)
+{
+	if (keycode == ESC)
+	{
+		scene_clean(scene);
+		exit(0);
+	}
+	return (1);
+}

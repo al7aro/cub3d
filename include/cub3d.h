@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 01:03:56 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/06 23:23:19 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/08 12:20:59 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@
 # define CIELLING 1
 
 /* Windows Indices */
+# define WINDOWS_NUM 1
 # define SCENE 0
-# define MINIMAP 1
+
+/* Player */
+# define PLAYER_SPEED 5
 
 # include "math_cub.h"
 
@@ -48,8 +51,8 @@ typedef struct s_img
 typedef struct s_mlx
 {
 	void	*mlx;
-	void	*win[2];
-	t_img	img[2];
+	void	*win[WINDOWS_NUM];
+	t_img	img[WINDOWS_NUM];
 }				t_mlx;
 
 typedef struct s_tex

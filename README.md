@@ -98,10 +98,15 @@ C 100,100,100	# Ceilling color
 11111111111111111111111111111111
 
 ```
-# Per-Object Loop
+# TODO
 
-## SORRY SHADER-TOY
+- Store player init rotation
+  - Handle player rotation with keys
+- Store player position
+  - Handle player position with keys
+- Raycast
+- Sprite draw on wall functions
 
-The main idea was simulating a program like `shader toy` which only gives you the X and Y position and you calculate the color from it.
-
-But `minilibX` offers different ways to make this job easier, so it is not needed to work like that.
+## Simple Bonus
+- Sprite animation
+- Minimap

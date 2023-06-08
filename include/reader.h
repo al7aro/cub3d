@@ -21,7 +21,6 @@
 # include "macro.h"
 # include "scene_utils.h"
 # include <mlx.h>
-# include "minimap.h"
 
 /* Error Handling */
 typedef enum e_map_error

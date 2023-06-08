@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 22:42:48 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/06 23:50:11 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/08 12:20:36 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,6 @@ void	reader_is_map_closed(t_scene *scene, t_error_list *err)
 		i = 1;
 		while (i < scene->map_size.x - 1 && *(*(m + j) + i))
 		{
-			if (*(*(m + j) + i) == 'N' || *(*(m + j) + i) == 'S'
-				|| *(*(m + j) + i) == 'E' || *(*(m + j) + i) == 'W')
-				{
-					scene->player.pos = (t_vec2){i * TILE_SIZE + TILE_SIZE / 2,
-						j * TILE_SIZE + TILE_SIZE / 2};
-					scene->player.dir = (t_vec2){1, 0}; //TODO: CHANGE ACCORDING TO LETTER
-				}
 			if (*(*(m + j) + i) == '0'
 				&& (*(*(m + j) + i + 1) == ' ' || *(*(m + j) + i - 1) == ' '
 				|| *(*(m + j + 1) + i) == ' ' || *(*(m + j - 1) + i) == ' '))
