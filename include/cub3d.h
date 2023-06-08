@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 01:03:56 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/08 12:20:59 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/08 12:51:25 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define SCENE_HEIGHT 500
 # define MINIMAP_WIDTH 500
 # define MINIMAP_HEIGHT 200
+# define TILE_SIZE 20
 
 /* Tex Indices */
 # define NORTH 0
