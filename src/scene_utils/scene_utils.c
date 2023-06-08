@@ -6,34 +6,34 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 00:53:16 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/08 12:27:29 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/08 13:00:25 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "reader.h"
 
-void	scene_log_map(t_scene *scene)
+void	scene_log_map(t_scene *s)
 {
 	int	i;
 	int	j;
 
 	i = -1;
-	while (++i < scene->map_size.x + 2)
+	while (++i < s->map_size.x + 2)
 		printf("-");
 	i = -1;
 	printf("\n");
-	while (++i < scene->map_size.y)
+	while (++i < s->map_size.y)
 	{
 		j = -1;
 		printf("|");
-		while (++j < scene->map_size.x)
+		while (++j < s->map_size.x)
 		{
-			if (scene->map[i][j] == '0')
-				printf(STR_RESET"%c"STR_RESET, scene->map[i][j]);
-			else if (scene->map[i][j] == '1')
-				printf(STR_RED"%c"STR_RESET, scene->map[i][j]);
+			if (s->map[i][j] == '0')
+				printf(STR_RESET"%c"STR_RESET, s->map[i][j]);
+			else if (s->map[i][j] == '1')
+				printf(STR_RED"%c"STR_RESET, s->map[i][j]);
 			else
-				printf(STR_PURPLE"%c"STR_RESET, scene->map[i][j]);
+				printf(STR_PURPLE"%c"STR_RESET, s->map[i][j]);
 		}
 		printf("|\n");
 	}
@@ -41,22 +41,22 @@ void	scene_log_map(t_scene *scene)
 		printf("-");
 }
 
-void	scene_setup(t_scene *scene)
+void	scene_setup(t_scene *s)
 {
-	scene->tex[NORTH].img = (void *)0;
-	scene->tex[NORTH].addr = (void *)0;
-	scene->tex[SOUTH].img = (void *)0;
-	scene->tex[SOUTH].addr = (void *)0;
-	scene->tex[WEST].img = (void *)0;
-	scene->tex[WEST].addr = (void *)0;
-	scene->tex[EAST].img = (void *)0;
-	scene->tex[EAST].addr = (void *)0;
-	scene->map = (char **)malloc(sizeof(char *));
-	scene->map[0] = ft_strdup(" ");
-	scene->map_size = (t_vec2){.x = 1, .y = 1};
-	scene->player.dir = (t_vec2){.x = 0.0, .y = 0.0};
-	scene->col[CIELLING] = 0;
-	scene->col[FLOOR] = 0;
+	s->tex[NORTH].img = (void *)0;
+	s->tex[NORTH].addr = (void *)0;
+	s->tex[SOUTH].img = (void *)0;
+	s->tex[SOUTH].addr = (void *)0;
+	s->tex[WEST].img = (void *)0;
+	s->tex[WEST].addr = (void *)0;
+	s->tex[EAST].img = (void *)0;
+	s->tex[EAST].addr = (void *)0;
+	s->map = (char **)malloc(sizeof(char *));
+	s->map[0] = ft_strdup(" ");
+	s->map_size = (t_vec2){.x = 1, .y = 1};
+	s->player.dir = (t_vec2){.x = 0.0, .y = 0.0};
+	s->col[CIELLING] = 0;
+	s->col[FLOOR] = 0;
 }
 
 void	mlx_setup(t_scene *scene)
@@ -65,43 +65,42 @@ void	mlx_setup(t_scene *scene)
 	scene->mlx->mlx = mlx_init();
 }
 
-void	mlx_setup_init(t_scene *scene)
+void	mlx_setup_init(t_scene *s)
 {
-	scene->mlx->img[SCENE].res = (t_vec2){.x = SCENE_WIDTH, .y = SCENE_HEIGHT};
-	scene->mlx->win[SCENE] = mlx_new_window(scene->mlx->mlx,
-			scene->mlx->img[SCENE].res.x, scene->mlx->img[SCENE].res.y, "cub3d");
-	scene->mlx->img[SCENE].img = mlx_new_image(scene->mlx->mlx,
-			scene->mlx->img[SCENE].res.x, scene->mlx->img[SCENE].res.y);
-	scene->mlx->img[SCENE].addr = mlx_get_data_addr(scene->mlx->img[SCENE].img,
-			&scene->mlx->img[SCENE].bpp,
-			&scene->mlx->img[SCENE].line_size,
-			&scene->mlx->img[SCENE].endian);
-
+	s->mlx->img[SCENE].res = (t_vec2){.x = SCENE_WIDTH, .y = SCENE_HEIGHT};
+	s->mlx->win[SCENE] = mlx_new_window(s->mlx->mlx,
+			s->mlx->img[SCENE].res.x, s->mlx->img[SCENE].res.y, "cub3d");
+	s->mlx->img[SCENE].img = mlx_new_image(s->mlx->mlx,
+			s->mlx->img[SCENE].res.x, s->mlx->img[SCENE].res.y);
+	s->mlx->img[SCENE].addr = mlx_get_data_addr(s->mlx->img[SCENE].img,
+			&s->mlx->img[SCENE].bpp,
+			&s->mlx->img[SCENE].line_size,
+			&s->mlx->img[SCENE].endian);
 }
 
-void	scene_clean(t_scene *scene)
+void	scene_clean(t_scene *s)
 {
-	if (scene->tex[NORTH].img)
-		mlx_destroy_image(scene->mlx->mlx, scene->tex[NORTH].img);
-	if (scene->tex[SOUTH].img)
-		mlx_destroy_image(scene->mlx->mlx, scene->tex[SOUTH].img);
-	if (scene->tex[WEST].img)
-		mlx_destroy_image(scene->mlx->mlx, scene->tex[WEST].img);
-	if (scene->tex[EAST].img)
-		mlx_destroy_image(scene->mlx->mlx, scene->tex[EAST].img);
-	if (scene->mlx->img[SCENE].img)
-		mlx_destroy_image(scene->mlx->mlx, scene->mlx->img[SCENE].img);
-	while (--scene->map_size.y >= 0)
-		if (scene->map[(int)scene->map_size.y])
-			free(scene->map[(int)scene->map_size.y]);
-	if (scene->map)
-		free(scene->map);
-	if (scene->mlx)
+	if (s->tex[NORTH].img)
+		mlx_destroy_image(s->mlx->mlx, s->tex[NORTH].img);
+	if (s->tex[SOUTH].img)
+		mlx_destroy_image(s->mlx->mlx, s->tex[SOUTH].img);
+	if (s->tex[WEST].img)
+		mlx_destroy_image(s->mlx->mlx, s->tex[WEST].img);
+	if (s->tex[EAST].img)
+		mlx_destroy_image(s->mlx->mlx, s->tex[EAST].img);
+	if (s->mlx->img[SCENE].img)
+		mlx_destroy_image(s->mlx->mlx, s->mlx->img[SCENE].img);
+	while (--s->map_size.y >= 0)
+		if (s->map[(int)s->map_size.y])
+			free(s->map[(int)s->map_size.y]);
+	if (s->map)
+		free(s->map);
+	if (s->mlx)
 	{
-		if (scene->mlx->win[SCENE])
-			mlx_destroy_window(scene->mlx->mlx, scene->mlx->win[SCENE]);
-		if (scene->mlx->mlx)
-			free(scene->mlx->mlx);
-		free(scene->mlx);
+		if (s->mlx->win[SCENE])
+			mlx_destroy_window(s->mlx->mlx, s->mlx->win[SCENE]);
+		if (s->mlx->mlx)
+			free(s->mlx->mlx);
+		free(s->mlx);
 	}
 }

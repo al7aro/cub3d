@@ -6,17 +6,17 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 00:12:11 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/08 12:31:25 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/08 13:01:42 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-int	render_scene(t_scene *scene, int type)
+int	render_scene(t_scene *s, int type)
 {
 	t_img	*img;
 
-	img = &scene->mlx->img[type];
+	img = &s->mlx->img[type];
 	draw_background(img, rbg_to_int(255, 255, 255));
 	draw_circle(img, (t_vec2){100, 100}, 50, rbg_to_int(255, 50, 100));
 	draw_circle(img, (t_vec2){400, 100}, 50, rbg_to_int(255, 50, 100));
@@ -27,10 +27,10 @@ int	render_scene(t_scene *scene, int type)
 	return (0);
 }
 
-int	on_loop(t_scene *scene)
+int	on_loop(t_scene *s)
 {
-	render_scene(scene, SCENE);
-	mlx_put_image_to_window(scene->mlx->mlx, scene->mlx->win[SCENE],
-		scene->mlx->img[SCENE].img, 0, 0);
+	render_scene(s, SCENE);
+	mlx_put_image_to_window(s->mlx->mlx, s->mlx->win[SCENE],
+		s->mlx->img[SCENE].img, 0, 0);
 	return (0);
 }

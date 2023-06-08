@@ -6,13 +6,13 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 01:20:03 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/05 15:30:48 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/08 12:58:44 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-static void	line_low(t_img *img, t_line l, int c)
+static void	low(t_img *img, t_line l, int c)
 {
 	int	dx;
 	int	dy;
@@ -41,7 +41,7 @@ static void	line_low(t_img *img, t_line l, int c)
 	}
 }
 
-static void	line_high(t_img *img, t_line l, int c)
+static void	high(t_img *img, t_line l, int c)
 {
 	int	dx;
 	int	dy;
@@ -79,19 +79,19 @@ int	draw_line(t_img *img, t_line l, int weight, int c)
 	{
 		if (l.x0 > l.x1)
 			while (++t < weight / 2)
-				line_low(img, (t_line){l.x1 + t, l.y1 + t, l.x0 + t, l.y0 + t}, c);
+				low(img, (t_line){l.x1 + t, l.y1 + t, l.x0 + t, l.y0 + t}, c);
 		else
 			while (++t < weight / 2)
-				line_low(img, (t_line){l.x0 + t, l.y0 + t, l.x1 + t, l.y1 + t}, c);
+				low(img, (t_line){l.x0 + t, l.y0 + t, l.x1 + t, l.y1 + t}, c);
 	}
 	else
 	{
 		if (l.y0 > l.y1)
 			while (++t < weight / 2)
-				line_high(img, (t_line){l.x1 + t, l.y1 + t, l.x0 + t, l.y0 + t}, c);
+				high(img, (t_line){l.x1 + t, l.y1 + t, l.x0 + t, l.y0 + t}, c);
 		else
 			while (++t < weight / 2)
-				line_high(img, (t_line){l.x0 + t, l.y0, l.x1 + t, l.y1}, c);
+				high(img, (t_line){l.x0 + t, l.y0, l.x1 + t, l.y1}, c);
 	}
 	return (0);
 }

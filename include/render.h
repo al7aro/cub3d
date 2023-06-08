@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 00:08:46 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/06 23:17:04 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/08 13:02:57 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct t_line
 	double	y1;
 }				t_line;
 
-int	on_loop(t_scene *scene);
+int	on_loop(t_scene *s);
 
 /* Shapes */
 int	draw_point(t_img *img, t_vec2 pos, int c);
@@ -45,6 +45,6 @@ int	draw_background(t_img *img, int c);
 int	draw_line(t_img *img, t_line l, int weight, int c);
 
 /* Render */
-int	render_minimap(t_scene *scene, int type);
+int	render_minimap(t_scene *s, int type);
 
 #endif

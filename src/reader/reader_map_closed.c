@@ -6,12 +6,15 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 22:42:48 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/08 12:20:36 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/08 13:04:08 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "reader.h"
 
+/*
+ * space char -> 32
+*/
 void	reader_is_map_closed(t_scene *scene, t_error_list *err)
 {
 	char	**m;
@@ -26,9 +29,9 @@ void	reader_is_map_closed(t_scene *scene, t_error_list *err)
 		while (i < scene->map_size.x - 1 && *(*(m + j) + i))
 		{
 			if (*(*(m + j) + i) == '0'
-				&& (*(*(m + j) + i + 1) == ' ' || *(*(m + j) + i - 1) == ' '
-				|| *(*(m + j + 1) + i) == ' ' || *(*(m + j - 1) + i) == ' '))
-					return (error_list_add(err, error_new(MAP_NOT_CLOSED, "")));
+				&& (*(*(m + j) + i + 1) == 32 || *(*(m + j) + i - 1) == 32
+					|| *(*(m + j + 1) + i) == 32 || *(*(m + j - 1) + i) == 32))
+				return (error_list_add(err, error_new(MAP_NOT_CLOSED, "")));
 			i++;
 		}
 		j++;
