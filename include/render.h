@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 00:08:46 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/05 15:27:14 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/06 23:17:04 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,8 @@ int	draw_rect_border(t_img *img, t_rect r, int weight, int c);
 int	draw_circle(t_img *img, t_vec2 pos, int r, int c);
 int	draw_background(t_img *img, int c);
 int	draw_line(t_img *img, t_line l, int weight, int c);
+
+/* Render */
+int	render_minimap(t_scene *scene, int type);
 
 #endif

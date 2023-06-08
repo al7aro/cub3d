@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene_utils.h                                      :+:      :+:    :+:   */
+/*   minimap.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/04 00:16:16 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/06 23:06:29 by alopez-g         ###   ########.fr       */
+/*   Created: 2023/06/06 23:01:57 by alopez-g          #+#    #+#             */
+/*   Updated: 2023/06/06 23:46:37 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_UTILS_H
-# define SCENE_UTILS_H
+#ifndef MINIMAP_H
+# define MINIMAP_H
 
-# include "cub3d.h"
+#include "render.h"
 
-void		scene_log_map(t_scene *scene);
-void		scene_clean(t_scene *scene);
-void		scene_setup(t_scene *scene);
-void		mlx_setup(t_scene *scene);
-void		mlx_setup_init(t_scene *scene);
+# define TILE_SIZE 20 /* pixels */
+# define PLAYER_SPEED 4
 
 #endif

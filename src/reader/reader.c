@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:24:14 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/01 00:28:25 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/06 23:05:20 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ t_map_error	reader(t_scene *scene, char *const path)
 		line = get_next_line(fd);
 	}
 	map_add_line(scene, " ");
+	reader_is_map_closed(scene, &err_list);
 	if (ft_lstsize(err_list.err) > 1)
 		ret = KO;
 	error_list_log(&err_list);

@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 01:03:56 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/01 00:42:50 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/06 23:23:19 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 /* Res */
 # define SCENE_WIDTH 500
 # define SCENE_HEIGHT 500
-# define RAYS_WIDTH 500
-# define RAYS_HEIGHT 200
+# define MINIMAP_WIDTH 500
+# define MINIMAP_HEIGHT 200
 
 /* Tex Indices */
 # define NORTH 0
@@ -31,7 +31,7 @@
 
 /* Windows Indices */
 # define SCENE 0
-# define RAYS 1
+# define MINIMAP 1
 
 # include "math_cub.h"
 
@@ -66,6 +66,7 @@ typedef struct s_tex
 typedef struct s_player
 {
 	t_vec2	dir;
+	t_vec2	pos;
 }				t_player;
 
 typedef struct s_scene

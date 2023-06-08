@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:24:06 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/05/31 23:36:21 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/06 22:57:58 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	error_log(void *content)
 			printf("["STR_PURPLE"BAD_SYNTAX"STR_RESET"]\n");
 		else if (TOO_MANY_OBJ == err->type)
 			printf("["STR_PURPLE"TOO_MANY_OBJ"STR_RESET"]\n");
+		else if (MAP_NOT_CLOSED == err->type)
+			printf("["STR_PURPLE"MAP_NOT_CLOSED"STR_RESET"]\n");
 		printf("\tAt Line:\n\t\t|%s", err->line);
 	}
 }

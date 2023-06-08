@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:23:44 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/05 01:23:04 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/06 23:37:22 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "reader.h"
 #include "render.h"
 #include "cub3d.h"
+#include "hook.h"
 
 int	clean_exit(void *scene_void)
 {
@@ -40,9 +41,11 @@ int	main(int argc, char **argv)
 		scene_clean(&scene);
 		return (-1);
 	}
+	mlx_setup_init(&scene);
 	printf("\n~mlx_loop running~\n");
 	mlx_hook(scene.mlx->win[SCENE], 17, 0, clean_exit, &scene);
-	mlx_hook(scene.mlx->win[RAYS], 17, 0, clean_exit, &scene);
+	mlx_hook(scene.mlx->win[MINIMAP], 17, 0, clean_exit, &scene);
+	mlx_hook(scene.mlx->win[SCENE], 2, 0, hook_key_pressed, &scene);
 	mlx_loop_hook(scene.mlx->mlx, on_loop, &scene);
 	mlx_loop(scene.mlx->mlx);
 	scene_clean(&scene);

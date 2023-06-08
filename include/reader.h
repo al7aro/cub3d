@@ -21,6 +21,7 @@
 # include "macro.h"
 # include "scene_utils.h"
 # include <mlx.h>
+# include "minimap.h"
 
 /* Error Handling */
 typedef enum e_map_error
@@ -33,7 +34,8 @@ typedef enum e_map_error
 	TOO_MANY_OBJ,
 	MAP_NOT_FOUND,
 	BAD_TEXTURE,
-	BAD_MAP
+	BAD_MAP,
+	MAP_NOT_CLOSED
 }				t_map_error;
 
 typedef struct s_error
@@ -63,6 +65,7 @@ void		reader_texture(t_scene *scene, char *const line,
 void		reader_room_color(t_scene *scene, char *const line,
 				t_error_list *err, size_t type);
 void		reader_map(t_scene *scene, char *const line, t_error_list *err);
+void		reader_is_map_closed(t_scene *scene, t_error_list *err);
 
 int			skip_space(char *const line);
 int			skip_to_space(char *const line);

@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 00:53:16 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/03 23:10:15 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/06 23:08:41 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,25 +62,30 @@ void	scene_setup(t_scene *scene)
 void	mlx_setup(t_scene *scene)
 {
 	scene->mlx = (t_mlx *)malloc(sizeof(t_mlx));
-	scene->mlx->img[SCENE].res = (t_vec2){.x = SCENE_WIDTH, .y = SCENE_HEIGHT};
-	scene->mlx->img[RAYS].res = (t_vec2){.x = RAYS_WIDTH, .y = RAYS_HEIGHT};
 	scene->mlx->mlx = mlx_init();
-	scene->mlx->win[RAYS] = mlx_new_window(scene->mlx->mlx,
-			scene->mlx->img[RAYS].res.x, scene->mlx->img[RAYS].res.y, "raycasting");
+}
+
+void	mlx_setup_init(t_scene *scene)
+{
+	scene->mlx->img[SCENE].res = (t_vec2){.x = SCENE_WIDTH, .y = SCENE_HEIGHT};
+	scene->mlx->img[MINIMAP].res = (t_vec2){.x = scene->map_size.x * TILE_SIZE,
+			.y = scene->map_size.y * TILE_SIZE};
+	scene->mlx->win[MINIMAP] = mlx_new_window(scene->mlx->mlx,
+			scene->mlx->img[MINIMAP].res.x, scene->mlx->img[MINIMAP].res.y, "raycasting");
 	scene->mlx->win[SCENE] = mlx_new_window(scene->mlx->mlx,
 			scene->mlx->img[SCENE].res.x, scene->mlx->img[SCENE].res.y, "cub3d");
 	scene->mlx->img[SCENE].img = mlx_new_image(scene->mlx->mlx,
 			scene->mlx->img[SCENE].res.x, scene->mlx->img[SCENE].res.y);
-	scene->mlx->img[RAYS].img = mlx_new_image(scene->mlx->mlx,
-			scene->mlx->img[RAYS].res.x, scene->mlx->img[RAYS].res.y);
+	scene->mlx->img[MINIMAP].img = mlx_new_image(scene->mlx->mlx,
+			scene->mlx->img[MINIMAP].res.x, scene->mlx->img[MINIMAP].res.y);
 	scene->mlx->img[SCENE].addr = mlx_get_data_addr(scene->mlx->img[SCENE].img,
 			&scene->mlx->img[SCENE].bpp,
 			&scene->mlx->img[SCENE].line_size,
 			&scene->mlx->img[SCENE].endian);
-	scene->mlx->img[RAYS].addr = mlx_get_data_addr(scene->mlx->img[RAYS].img,
-			&scene->mlx->img[RAYS].bpp,
-			&scene->mlx->img[RAYS].line_size,
-			&scene->mlx->img[RAYS].endian);
+	scene->mlx->img[MINIMAP].addr = mlx_get_data_addr(scene->mlx->img[MINIMAP].img,
+			&scene->mlx->img[MINIMAP].bpp,
+			&scene->mlx->img[MINIMAP].line_size,
+			&scene->mlx->img[MINIMAP].endian);
 }
 
 void	scene_clean(t_scene *scene)
@@ -95,8 +100,8 @@ void	scene_clean(t_scene *scene)
 		mlx_destroy_image(scene->mlx->mlx, scene->tex[EAST].img);
 	if (scene->mlx->img[SCENE].img)
 		mlx_destroy_image(scene->mlx->mlx, scene->mlx->img[SCENE].img);
-	if (scene->mlx->img[RAYS].img)
-		mlx_destroy_image(scene->mlx->mlx, scene->mlx->img[RAYS].img);
+	if (scene->mlx->img[MINIMAP].img)
+		mlx_destroy_image(scene->mlx->mlx, scene->mlx->img[MINIMAP].img);
 	while (--scene->map_size.y >= 0)
 		if (scene->map[(int)scene->map_size.y])
 			free(scene->map[(int)scene->map_size.y]);
@@ -104,8 +109,8 @@ void	scene_clean(t_scene *scene)
 		free(scene->map);
 	if (scene->mlx)
 	{
-		if (scene->mlx->win[RAYS])
-			mlx_destroy_window(scene->mlx->mlx, scene->mlx->win[RAYS]);
+		if (scene->mlx->win[MINIMAP])
+			mlx_destroy_window(scene->mlx->mlx, scene->mlx->win[MINIMAP]);
 		if (scene->mlx->win[SCENE])
 			mlx_destroy_window(scene->mlx->mlx, scene->mlx->win[SCENE]);
 		if (scene->mlx->mlx)
