@@ -98,8 +98,15 @@ C 100,100,100	# Ceilling color
 11111111111111111111111111111111
 
 ```
-TODO:
+# TODO
 
-- TESTING
+- Store player init rotation
+  - Handle player rotation with keys
+- Store player position
+  - Handle player position with keys
+- Raycast
+- Sprite draw on wall functions
 
----
+## Simple Bonus
+- Sprite animation
+- Minimap
