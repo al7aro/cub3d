@@ -18,6 +18,7 @@ int	hook_key_pressed(int keycode, void *param)
 
 	s = (t_scene *)param;
 	player_move(keycode, s);
+	player_rotate(keycode, s);
 	esc_exit(keycode, s);
 	return (0);
 }

@@ -17,9 +17,11 @@
 # include "keycodes.h"
 # include "stdlib.h"
 # include "scene_utils.h"
+# include "stdio.h"
 
 int	hook_key_pressed(int keycode, void *param);
 int	player_move(int keycode, t_scene *s);
+int	player_rotate(int keycode, t_scene *s);
 int	esc_exit(int keycode, t_scene *s);
 
 #endif

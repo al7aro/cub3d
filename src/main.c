@@ -44,7 +44,7 @@ int	main(int argc, char **argv)
 	mlx_setup_init(&scene);
 	printf("\n~mlx_loop running~\n");
 	mlx_hook(scene.mlx->win[SCENE], 17, 0, clean_exit, &scene);
-	mlx_hook(scene.mlx->win[SCENE], 2, 0, hook_key_pressed, &scene);
+	mlx_hook(scene.mlx->win[SCENE], 2, 1, hook_key_pressed, &scene);
 	mlx_loop_hook(scene.mlx->mlx, on_loop, &scene);
 	mlx_loop(scene.mlx->mlx);
 	scene_clean(&scene);

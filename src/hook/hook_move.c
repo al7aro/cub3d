@@ -14,14 +14,22 @@
 
 int	player_move(int keycode, t_scene *s)
 {
-	(void)keycode;
-	(void)s;
+	if (keycode == 13)
+		s->player.pos.y -= 0.1;
+	if (keycode == 1)
+		s->player.pos.y += 0.1;
+	if (keycode == 0)
+		s->player.pos.x -= 0.1;
+	if (keycode == 2)
+		s->player.pos.x += 0.1;
 	return (0);
 }
 
 int	player_rotate(int keycode, t_scene *s)
 {
-	(void)keycode;
-	(void)s;
+	if (keycode == 123)
+		s->player.dir.x -= 0.1;
+	if (keycode == 124)
+		s->player.dir.x += 0.1;
 	return (0);
 }
