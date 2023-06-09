@@ -6,13 +6,13 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 00:42:37 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/05 01:18:10 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/09 13:17:51 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-int	draw_point(t_img *img, t_vec2 pos, int c)
+int	draw_point(t_img *img, t_ivec2 pos, int c)
 {
 	int	first_char;
 
