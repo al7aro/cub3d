@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 00:52:56 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/05 15:29:32 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/09 13:18:37 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	draw_rect(t_img *img, t_rect r, int c)
 	{
 		x = r.x - 1;
 		while (++x < r.x + r.w)
-			draw_point(img, (t_vec2){.x = x, .y = y}, c);
+			draw_point(img, (t_ivec2){.x = x, .y = y}, c);
 	}
 	return (0);
 }

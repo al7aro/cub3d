@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 01:21:06 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/05 15:30:35 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/09 13:17:29 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	draw_background(t_img *img, int c)
 	{
 		x = 0;
 		while (++x < img->res.x)
-			draw_point(img, (t_vec2){.x = x, .y = y}, c);
+			draw_point(img, (t_ivec2){.x = x, .y = y}, c);
 	}
 	return (0);
 }
