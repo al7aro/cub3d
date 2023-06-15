@@ -27,20 +27,20 @@ int	draw_rect(t_img *img, t_rect r, int c)
 	return (0);
 }
 
-int	draw_rect_border(t_img *img, t_rect r, int weight, int c)
+int	draw_rect_border(t_img *img, t_rect r, int c)
 {
 	t_line	l0;
 	t_line	l1;
 	t_line	l2;
 	t_line	l3;
 
-	l0 = (t_line){r.x, r.y, r.x + r.w, r.y,0,0,0};
-	l1 = (t_line){r.x, r.y, r.x, r.y + r.h,0,0,0};
-	l2 = (t_line){r.x, r.y + r.h, r.x + r.w, r.y + r.h,0,0,0};
-	l3 = (t_line){r.x + r.w, r.y, r.x + r.w, r.y + r.h,0,0,0};
-	draw_line(img, l0, weight, c);
-	draw_line(img, l1, weight, c);
-	draw_line(img, l2, weight, c);
-	draw_line(img, l3, weight, c);
+	l0 = (t_line){r.x, r.y, r.x + r.w, r.y,0};
+	l1 = (t_line){r.x, r.y, r.x, r.y + r.h,0};
+	l2 = (t_line){r.x, r.y + r.h, r.x + r.w, r.y + r.h,0};
+	l3 = (t_line){r.x + r.w, r.y, r.x + r.w, r.y + r.h,0};
+	draw_line(img, l0, c);
+	draw_line(img, l1, c);
+	draw_line(img, l2, c);
+	draw_line(img, l3, c);
 	return (0);
 }

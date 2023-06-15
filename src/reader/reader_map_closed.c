@@ -37,8 +37,8 @@ void	reader_is_map_closed(t_scene *scene, t_error_list *err)
 			if (position == 'N' || position == 'S' || position == 'E'
 				|| position == 'W')
 			{
-				scene->player.pos.x = (double)((j - 0.5) * TILE_SIZE);
-				scene->player.pos.y = (double)((i - 0.5) * TILE_SIZE);
+				scene->player.pos.x = (double)((i - 0.5) * TILE_SIZE);
+				scene->player.pos.y = (double)((j - 0.5) * TILE_SIZE);
 				if (position == 'N')
 					scene->player.dir.x = 3 * M_PI_2;
 				else if (position == 'S')

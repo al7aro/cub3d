@@ -35,8 +35,6 @@ typedef struct s_line
 	double	y0;
 	double	x1;
 	double	y1;
-	double	dx;
-	double	dy;
 	double	pixels;
 }				t_line;
 
@@ -48,11 +46,12 @@ int	on_loop(t_scene *s);
 
 /* Shapes */
 int		draw_point(t_img *img, t_vec2 pos, int c);
+int		draw_point_novector(t_img *img,	int x, int y, int c);
 int		draw_rect(t_img *img, t_rect r, int c);
-int		draw_rect_border(t_img *img, t_rect r, int weight, int c);
+int		draw_rect_border(t_img *img, t_rect r, int c);
 int		draw_circle(t_img *img, t_vec2 pos, int r, int c);
 int		draw_background(t_img *img, int c);
-int		draw_line(t_img *img, t_line l, int weight, int c);
+int		draw_line(t_img *img, t_line l, int c);
 
 /* Render */
 int		render_minimap(t_scene *s, int type);

@@ -19,12 +19,6 @@ int	render_scene(t_scene *s, int type)
 	img = &s->mlx->img[type];
 	draw_background(img, rbg_to_int(255, 255, 255));
 	calculate_rays(s, img);
-	/*draw_circle(img, (t_vec2){100, 100}, 50, rbg_to_int(255, 50, 100));
-	draw_circle(img, (t_vec2){400, 100}, 50, rbg_to_int(255, 50, 100));
-	draw_circle(img, (t_vec2){240, 250}, 10, rbg_to_int(0, 0, 0));
-	draw_circle(img, (t_vec2){260, 250}, 10, rbg_to_int(0, 0, 0));
-	draw_line(img, (t_line){100, 300, 250, 350}, 5, rbg_to_int(0, 0, 0));
-	draw_line(img, (t_line){250, 350, 400, 300}, 5, rbg_to_int(0, 0, 0));*/
 	return (0);
 }
 

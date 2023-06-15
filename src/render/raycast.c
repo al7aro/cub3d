@@ -54,7 +54,6 @@ void	calculate_hight(t_scene *scene, t_ray *ray, int column, double angle)
 		fish_eye = (ray->ver_dist / TILE_SIZE) * cos(angle - ray->angle);
 	else
 		fish_eye = (ray->hor_dist / TILE_SIZE) * cos(angle - ray->angle);
-	
 	wall_height = ((SCENE_WIDTH / 2) / tan(FOV / 2))/ fish_eye;
 	ray->line->x0 = column;
 	ray->line->y0 = (SCENE_HEIGHT / 2) - (wall_height / 2);
@@ -64,11 +63,6 @@ void	calculate_hight(t_scene *scene, t_ray *ray, int column, double angle)
 	ray->line->y1 = (SCENE_HEIGHT / 2) + (wall_height / 2);
 	if (ray->line->y1 >= SCENE_HEIGHT)
 		ray->line->y1 = SCENE_HEIGHT - 1;
-	ray->line->dx = ray->line->x1 - ray->line->x0;
-	ray->line->dy = ray->line->y1 - ray->line->y0;
-	ray->line->pixels = sqrt(pow(ray->line->dx, 2) + pow(ray->line->dy, 2));
-	ray->line->dx /= ray->line->pixels;
-	ray->line->dy /= ray->line->pixels;
 }
 
 void	throw_ray(t_ray *ray, t_scene *scene, double angle, int column)
@@ -147,7 +141,10 @@ int	calculate_rays(t_scene *scene, t_img *img)
 		init_ray(ray_aux);
 		throw_ray(ray_aux, scene, angle, x);
 		calculate_hight(scene, ray_aux, x, angle);
-		draw_line(img, *ray_aux->line, 5, rbg_to_int(0, 0, 0));
+		if (ray_aux->wall_hit_ver)
+			draw_line(img, *ray_aux->line,  rbg_to_int(255, 0, 255));
+		else
+			draw_line(img, *ray_aux->line, rbg_to_int(0, 0, 255));
 	}
 	return (0);
 }

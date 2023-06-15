@@ -30,7 +30,7 @@ static void	low(t_img *img, t_line l, int c)
 	d = (2 * dy) - dx;
 	while (l.x0++ < l.x1)
 	{
-		draw_point(img, (t_vec2){l.x0, l.y0}, c);
+		draw_point_novector(img, l.x0, l.y0, c);
 		if (d > 0)
 		{
 			l.y0 += yi;
@@ -59,7 +59,8 @@ static void	high(t_img *img, t_line l, int c)
 	d = (2 * dx) - dy;
 	while (l.y0++ < l.y1)
 	{
-		draw_point(img, (t_vec2){l.x0, l.y0}, c);
+		
+		draw_point_novector(img, l.x0, l.y0, c);
 		if (d > 0)
 		{
 			l.x0 += xi;
@@ -70,28 +71,11 @@ static void	high(t_img *img, t_line l, int c)
 	}
 }
 
-int	draw_line(t_img *img, t_line l, int weight, int c)
+int	draw_line(t_img *img, t_line l, int c)
 {
-	int	t;
-
-	t = -weight / 2;
 	if (fabs(l.y1 - l.y0) < fabs(l.x1 - l.x0))
-	{
-		if (l.x0 > l.x1)
-			while (++t < weight / 2)
-				low(img, (t_line){l.x1 + t, l.y1 + t, l.x0 + t, l.y0 + t,0,0,0}, c);
-		else
-			while (++t < weight / 2)
-				low(img, (t_line){l.x0 + t, l.y0 + t, l.x1 + t, l.y1 + t,0,0,0}, c);
-	}
+		low(img, l, c);
 	else
-	{
-		if (l.y0 > l.y1)
-			while (++t < weight / 2)
-				high(img, (t_line){l.x1 + t, l.y1 + t, l.x0 + t, l.y0 + t,0,0,0}, c);
-		else
-			while (++t < weight / 2)
-				high(img, (t_line){l.x0 + t, l.y0, l.x1 + t, l.y1,0,0,0}, c);
-	}
+		high(img, l, c);
 	return (0);
 }
