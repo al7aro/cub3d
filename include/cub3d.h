@@ -19,6 +19,7 @@
 # define MINIMAP_WIDTH 500
 # define MINIMAP_HEIGHT 200
 # define TILE_SIZE 20
+# define FOV 60 * (M_PI / 180)
 
 /* Tex Indices */
 # define NORTH 0
@@ -38,6 +39,9 @@
 # define PLAYER_SPEED 5
 
 # include "math_cub.h"
+# include "render.h"
+
+
 
 typedef struct s_img
 {
@@ -73,6 +77,35 @@ typedef struct s_player
 	t_vec2	pos;
 }				t_player;
 
+
+typedef struct s_line t_line;
+
+typedef struct s_ray
+{
+	float		angle;
+	int			is_up;
+	int			is_down;
+	int			is_left;
+	int			is_right;
+	int			ver_x_step;
+	int			ver_y_step;
+	double			hor_x_step;
+	double			hor_y_step;
+	int			wall_hit_hor;
+	double			wall_x_hit_hor;
+	double			wall_y_hit_hor;
+	int			wall_hit_ver;
+	double			wall_x_hit_ver;
+	double			wall_y_hit_ver;
+	int			wall_x_hit;
+	int			wall_y_hit;
+	double		hor_dist;
+	double		ver_dist;
+	t_line		*line;
+
+}				t_ray;
+
+
 typedef struct s_scene
 {
 	t_mlx		*mlx;
@@ -81,6 +114,7 @@ typedef struct s_scene
 	char		**map;
 	t_vec2		map_size;
 	t_player	player;
+	t_ray		**ray;
 }				t_scene;
 
 #endif

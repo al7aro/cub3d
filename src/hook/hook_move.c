@@ -15,21 +15,24 @@
 int	player_move(int keycode, t_scene *s)
 {
 	if (keycode == 13)
-		s->player.pos.y -= 0.1;
+		s->player.pos.y -= 1;
 	if (keycode == 1)
-		s->player.pos.y += 0.1;
+		s->player.pos.y += 1;
 	if (keycode == 0)
-		s->player.pos.x -= 0.1;
+		s->player.pos.x -= 1;
 	if (keycode == 2)
-		s->player.pos.x += 0.1;
+		s->player.pos.x += 1;
 	return (0);
 }
 
 int	player_rotate(int keycode, t_scene *s)
 {
+	double speed;
+
+	speed = 7 * (M_PI / 180);
 	if (keycode == 123)
-		s->player.dir.x -= 0.1;
+		s->player.dir.x = angle_fov(s->player.dir.x + (-1 * speed));
 	if (keycode == 124)
-		s->player.dir.x += 0.1;
+		s->player.dir.x = angle_fov(s->player.dir.x + (1 * speed));
 	return (0);
 }

@@ -15,6 +15,7 @@
 
 # include <fcntl.h>
 # include <stdio.h>
+# include <stdlib.h>
 # include "libft.h"
 # include "cub3d.h"
 # include "color.h"
@@ -74,5 +75,6 @@ char		is_space(char c);
 int			check_int(char *const line, size_t *i);
 int			check_color(char *const line, size_t *i);
 int			read_color(char *const line);
+
 
 #endif

@@ -79,19 +79,19 @@ int	draw_line(t_img *img, t_line l, int weight, int c)
 	{
 		if (l.x0 > l.x1)
 			while (++t < weight / 2)
-				low(img, (t_line){l.x1 + t, l.y1 + t, l.x0 + t, l.y0 + t}, c);
+				low(img, (t_line){l.x1 + t, l.y1 + t, l.x0 + t, l.y0 + t,0,0,0}, c);
 		else
 			while (++t < weight / 2)
-				low(img, (t_line){l.x0 + t, l.y0 + t, l.x1 + t, l.y1 + t}, c);
+				low(img, (t_line){l.x0 + t, l.y0 + t, l.x1 + t, l.y1 + t,0,0,0}, c);
 	}
 	else
 	{
 		if (l.y0 > l.y1)
 			while (++t < weight / 2)
-				high(img, (t_line){l.x1 + t, l.y1 + t, l.x0 + t, l.y0 + t}, c);
+				high(img, (t_line){l.x1 + t, l.y1 + t, l.x0 + t, l.y0 + t,0,0,0}, c);
 		else
 			while (++t < weight / 2)
-				high(img, (t_line){l.x0 + t, l.y0, l.x1 + t, l.y1}, c);
+				high(img, (t_line){l.x0 + t, l.y0, l.x1 + t, l.y1,0,0,0}, c);
 	}
 	return (0);
 }
