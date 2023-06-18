@@ -35,6 +35,8 @@ void	intersection(t_scene *s, t_ray *ray)
 		ray->wall_y_hit = ray->wall_y_hit_hor;
 		ray->wall_hit_ver = 0;
 	}
+	ray->percert_x = ray->wall_x_hit - floor(ray->wall_x_hit);
+	ray->percert_y = ray->wall_y_hit - floor(ray->wall_y_hit);
 }
 
 void	dda(t_scene *s, t_ray *ray)
@@ -44,17 +46,16 @@ void	dda(t_scene *s, t_ray *ray)
 	intersection(s, ray);
 }
 
-void	calculate_hight(t_scene *scene, t_ray *ray, int column, double angle)
+void	calculate_hight(t_ray *ray, int column, double angle)
 {
 	double		wall_height;
 	double		fish_eye;
 
-	(void)scene;
 	if (ray->wall_hit_ver)
 		fish_eye = (ray->ver_dist / TILE_SIZE) * cos(angle - ray->angle);
 	else
 		fish_eye = (ray->hor_dist / TILE_SIZE) * cos(angle - ray->angle);
-	wall_height = ((SCENE_WIDTH / 2) / tan(FOV / 2))/ fish_eye;
+	wall_height = ((SCENE_WIDTH / 2) / tan(FOV / 2)) / fish_eye;
 	ray->line->x0 = column;
 	ray->line->y0 = (SCENE_HEIGHT / 2) - (wall_height / 2);
 	if (ray->line->y0 < 0)
@@ -131,8 +132,7 @@ int	calculate_rays(t_scene *scene, t_img *img)
 	ray  = (t_ray **)malloc(sizeof(t_ray *) * SCENE_WIDTH);
 	if (ray == NULL)
 		return (-1);
-	x = -1;
-	
+	x = -1; 
 	while (++x < SCENE_WIDTH)
 	{
 		ray_aux = (t_ray *)malloc(sizeof(t_ray));
@@ -143,8 +143,21 @@ int	calculate_rays(t_scene *scene, t_img *img)
 			return (-1);
 		init_ray(ray_aux);
 		throw_ray(ray_aux, scene, angle);
-		calculate_hight(scene, ray_aux, x, angle);
-		draw_line(img, *ray_aux->line,  rbg_to_int(255, 0, 255));	
+		calculate_hight(ray_aux, x, angle);
+		if (ray_aux->wall_hit_hor)
+		{
+			if (ray_aux->is_up)
+				draw_line(img, *ray_aux->line,  rbg_to_int(255, 0, 0));
+			else
+				draw_line(img, *ray_aux->line,  rbg_to_int(0, 255, 0));
+		}
+		else
+		{
+			if (ray_aux->is_left)
+				draw_line(img, *ray_aux->line,  rbg_to_int(0, 0, 255));
+			else
+				draw_line(img, *ray_aux->line,  rbg_to_int(255, 255, 0));
+		}
 		angle =  angle_fov(angle  + (FOV/ SCENE_WIDTH));
 	}
 	return (0);

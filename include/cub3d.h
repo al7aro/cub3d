@@ -103,6 +103,9 @@ typedef struct s_ray
 	double		ver_dist;
 	t_line		*line;
 
+	double		percert_x;
+	double		percert_y;
+
 }				t_ray;
 
 
