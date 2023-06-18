@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 01:03:56 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/08 12:51:25 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/18 21:28:49 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define MINIMAP_WIDTH 500
 # define MINIMAP_HEIGHT 200
 # define TILE_SIZE 20
+# define MAP_TILE_SIZE 5
 # define FOV 60 * (M_PI / 180)
 
 /* Tex Indices */
@@ -32,8 +33,9 @@
 # define CIELLING 1
 
 /* Windows Indices */
-# define WINDOWS_NUM 1
+# define WINDOWS_NUM 2
 # define SCENE 0
+# define MINIMAP 1
 
 /* Player */
 # define PLAYER_SPEED 5
@@ -56,7 +58,7 @@ typedef struct s_img
 typedef struct s_mlx
 {
 	void	*mlx;
-	void	*win[WINDOWS_NUM];
+	void	*win;
 	t_img	img[WINDOWS_NUM];
 }				t_mlx;
 

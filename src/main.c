@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:23:44 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/08 12:18:34 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/18 21:26:06 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int	main(int argc, char **argv)
 	}
 	mlx_setup_init(&scene);
 	printf("\n~mlx_loop running~\n");
-	mlx_hook(scene.mlx->win[SCENE], 17, 0, clean_exit, &scene);
-	mlx_hook(scene.mlx->win[SCENE], 2, 1, hook_key_pressed, &scene);
+	mlx_hook(scene.mlx->win, 17, 0, clean_exit, &scene);
+	mlx_hook(scene.mlx->win, 2, 1, hook_key_pressed, &scene);
 	scene.ray = NULL;
 	mlx_loop_hook(scene.mlx->mlx, on_loop, &scene);
 	mlx_loop(scene.mlx->mlx);
