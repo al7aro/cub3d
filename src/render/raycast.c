@@ -117,7 +117,19 @@ void	clean_prev_ray(t_ray **ray)
 	}
 }
 
-
+void	cielling_floor(t_scene *scene, t_img *img, t_ray *ray_aux)
+{	
+	t_line line_sky;
+	
+	line_sky.x0 = ray_aux->line->x0;
+	line_sky.y0 = -1;
+	line_sky.x1 = ray_aux->line->x1;
+	line_sky.y1 = SCENE_HEIGHT / 2;
+	draw_line(img, line_sky, scene->col[CIELLING]);
+	line_sky.y0 = SCENE_HEIGHT / 2;
+	line_sky.y1 = SCENE_HEIGHT;	
+	draw_line(img, line_sky, scene->col[FLOOR]);
+}
 
 int	calculate_rays(t_scene *scene, t_img *img)
 {
@@ -144,6 +156,9 @@ int	calculate_rays(t_scene *scene, t_img *img)
 		init_ray(ray_aux);
 		throw_ray(ray_aux, scene, angle);
 		calculate_hight(ray_aux, x, angle);
+		cielling_floor(scene, img, ray_aux);
+		
+
 		if (ray_aux->wall_hit_hor)
 		{
 			if (ray_aux->is_up)
@@ -158,6 +173,9 @@ int	calculate_rays(t_scene *scene, t_img *img)
 			else
 				draw_line(img, *ray_aux->line,  rbg_to_int(255, 255, 0));
 		}
+
+
+
 		angle =  angle_fov(angle  + (FOV/ SCENE_WIDTH));
 	}
 	return (0);
