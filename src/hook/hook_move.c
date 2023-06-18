@@ -46,21 +46,40 @@ void	scene_log_map2(t_scene *s, int x, int y)
 		printf("-");
 }
 
+int	move_player(int key)
+{
+	if (key == W || key == W_LINUX || key == S || key == S_LINUX
+		|| key == A || key == A_LINUX || key == D || key == D_LINUX)
+		return (1);
+	return (0);
+}
+
 int	player_move(int keycode, t_scene *s)
 {
+	double	angle;
+	double	movestep;
+	double	next_x;
+	double	next_y;
+	double move_angle;
+
+	if (move_player(keycode) == 0)
+		return (0);
+	move_angle = s->player.dir.x;
 	if (keycode == W || keycode == W_LINUX)
-		s->player.pos.y += 2;
+		angle = angle_fov(move_angle);
 	if (keycode == S || keycode == S_LINUX)
-		s->player.pos.y -= 2;
+		angle = angle_fov(move_angle+ M_PI);
 	if (keycode == A || keycode == A_LINUX)
-		s->player.pos.x += 2;
+		angle = angle_fov(move_angle - M_PI_2);
 	if (keycode == D || keycode == D_LINUX)
-		s->player.pos.x -= 2;
-	if (keycode == A || keycode == A_LINUX || keycode == S || keycode == S_LINUX
-		|| keycode == D || keycode == D_LINUX || keycode == W || keycode == W_LINUX)
+		angle = angle_fov(move_angle + M_PI_2);
+	movestep = 0.35 * TILE_SIZE;
+	next_x = s->player.pos.x + (cos(angle) * movestep);
+	next_y = s->player.pos.y + (sin(angle) * movestep);
+	if (!hits_walll(s, next_x, next_y))
 	{
-		scene_log_map2(s,  (s->player.pos.y -10)/20,(s->player.pos.x -10)/20);
-		//printf("\nplayer: (%f, %f) orientation: %f \n", s->player.pos.x, s->player.pos.y, s->player.dir.x);
+		s->player.pos.x = next_x;
+		s->player.pos.y = next_y;
 	}
 	return (0);
 }
@@ -74,9 +93,5 @@ int	player_rotate(int keycode, t_scene *s)
 		s->player.dir.x = angle_fov(s->player.dir.x + (-1 * speed));
 	if (keycode == RIGHT || keycode == RIGHT_LINUX)
 		s->player.dir.x = angle_fov(s->player.dir.x + (1 * speed));
-	/*if (keycode == LEFT || keycode == RIGHT || keycode == LEFT_LINUX || keycode == RIGHT_LINUX)
-	{
-		printf("player: (%f, %f) orientation: %f \n", s->player.pos.x, s->player.pos.y, s->player.dir.x);
-	}*/
 	return (0);
 }
