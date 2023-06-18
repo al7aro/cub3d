@@ -18,13 +18,13 @@ void	vertical_intersections(t_scene *s, t_ray *ray, double *ver_x_dist, double *
 	double	inter_x;
 
 	inter_x = floor(s->player.pos.x / TILE_SIZE) * TILE_SIZE;
-	if (ray->is_left)
+	if (!ray->is_left)
 		inter_x += TILE_SIZE;
-	inter_y = s->player.pos.y + (inter_x - s->player.pos.x) / tan(ray->angle);
+	inter_y = s->player.pos.y + ((inter_x - s->player.pos.x) * tan(ray->angle));
 	ray->ver_x_step = TILE_SIZE;
 	if (ray->is_left)
 		ray->ver_x_step *= -1;
-	ray->ver_y_step = TILE_SIZE / tan(ray->angle);
+	ray->ver_y_step = TILE_SIZE * tan(ray->angle);
 	if (!ray->is_down && ray->ver_y_step > 0)
 		ray->ver_y_step *= -1;
 	if (ray->is_down && ray->ver_y_step < 0)
@@ -39,7 +39,7 @@ void	vertical_rar_right(t_scene *s, t_ray *ray, double *ver_x_dist, double *ver_
 		return ;
 	while (ray_beetween_limits(s, *ver_x_dist, *ver_y_dist))
 	{
-		if (hits_walll(s, *ver_x_dist + 1, *ver_y_dist))
+		if (hits_walll(s, (*ver_x_dist) + 1, *ver_y_dist))
 		{
 			ray->wall_hit_ver = 1;
 			ray->wall_x_hit_ver = *ver_x_dist;
@@ -66,7 +66,7 @@ void	vertical_rar_left(t_scene *s, t_ray *ray, double *ver_x_dist, double *ver_y
 	
 	while (ray_beetween_limits(s, *ver_x_dist, *ver_y_dist))
 	{
-		if (hits_walll(s, *ver_x_dist - 1, *ver_y_dist))
+		if (hits_walll(s, (*ver_x_dist) - 1, *ver_y_dist))
 		{
 			ray->wall_hit_ver = 1;
 			ray->wall_x_hit_ver = *ver_x_dist;

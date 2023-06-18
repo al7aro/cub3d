@@ -49,7 +49,7 @@ int	hits_walll(t_scene *s, double h_dist, double v_dist)
 	int		map_x;
 	int		map_y;
 
-	if (!ray_beetween_limits(s, h_dist, v_dist))
+	if (ray_beetween_limits(s, h_dist, v_dist) == 0)
 		return (1);
 	map_x = (int)(h_dist / TILE_SIZE);
 	map_y = (int)(v_dist / TILE_SIZE);

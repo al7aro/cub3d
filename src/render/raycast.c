@@ -37,9 +37,9 @@ void	intersection(t_scene *s, t_ray *ray)
 	}
 }
 
-void	dda(t_scene *s, t_ray *ray, int column)
+void	dda(t_scene *s, t_ray *ray)
 {
-	horizontal_ray(s, ray, column);
+	horizontal_ray(s, ray);
 	vertical_ray(s, ray);
 	intersection(s, ray);
 }
@@ -65,11 +65,11 @@ void	calculate_hight(t_scene *scene, t_ray *ray, int column, double angle)
 		ray->line->y1 = SCENE_HEIGHT - 1;
 }
 
-void	throw_ray(t_ray *ray, t_scene *scene, double angle, int column)
+void	throw_ray(t_ray *ray, t_scene *scene, double angle)
 {
-	ray->angle = angle_fov(angle - (FOV / 2));
+	ray->angle = angle;
 	set_ray_directions(ray);
-	dda(scene, ray, column);
+	dda(scene, ray);
 }
 
 void	init_ray(t_ray *ray)
@@ -104,7 +104,7 @@ void	clean_prev_ray(t_ray **ray)
 	{
 		while (++i < SCENE_WIDTH)
 		{
-			if (ray[i]->line != NULL)
+			if (ray[i] != NULL && ray[i]->line != NULL)
 			{
 				free(ray[i]->line);
 				ray[i]->line = NULL;
@@ -116,6 +116,8 @@ void	clean_prev_ray(t_ray **ray)
 	}
 }
 
+
+
 int	calculate_rays(t_scene *scene, t_img *img)
 {
 	t_ray	**ray;
@@ -124,12 +126,13 @@ int	calculate_rays(t_scene *scene, t_img *img)
 	int		x;
 
 	ray = scene->ray;
-	angle = scene->player.dir.x;
+	angle =  angle_fov(scene->player.dir.x - (FOV / 2));
 	clean_prev_ray(scene->ray);
 	ray  = (t_ray **)malloc(sizeof(t_ray *) * SCENE_WIDTH);
 	if (ray == NULL)
 		return (-1);
 	x = -1;
+	
 	while (++x < SCENE_WIDTH)
 	{
 		ray_aux = (t_ray *)malloc(sizeof(t_ray));
@@ -139,12 +142,10 @@ int	calculate_rays(t_scene *scene, t_img *img)
 		if (ray_aux->line == NULL)
 			return (-1);
 		init_ray(ray_aux);
-		throw_ray(ray_aux, scene, angle, x);
+		throw_ray(ray_aux, scene, angle);
 		calculate_hight(scene, ray_aux, x, angle);
-		if (ray_aux->wall_hit_ver)
-			draw_line(img, *ray_aux->line,  rbg_to_int(255, 0, 255));
-		else
-			draw_line(img, *ray_aux->line, rbg_to_int(0, 0, 255));
+		draw_line(img, *ray_aux->line,  rbg_to_int(255, 0, 255));	
+		angle =  angle_fov(angle  + (FOV/ SCENE_WIDTH));
 	}
 	return (0);
 }

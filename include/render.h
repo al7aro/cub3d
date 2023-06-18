@@ -60,7 +60,7 @@ int		render_minimap(t_scene *s, int type);
 int	calculate_rays(t_scene *s, t_img *img);
 
 /* horizontal_ray */
-void	horizontal_ray(t_scene *s, t_ray *ray, int column);
+void	horizontal_ray(t_scene *s, t_ray *ray);
 
 /* vertical_ray */
 void	vertical_ray(t_scene *s, t_ray *ray);

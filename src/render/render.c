@@ -18,6 +18,7 @@ int	render_scene(t_scene *s, int type)
 
 	img = &s->mlx->img[type];
 	draw_background(img, rbg_to_int(255, 255, 255));
+	
 	calculate_rays(s, img);
 	return (0);
 }

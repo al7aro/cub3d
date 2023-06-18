@@ -12,7 +12,7 @@
 
 #include "render.h"
 
-void	horizontal_intersections(t_scene *s, t_ray *ray, double *hor_x_dist, double *hor_y_dist, int column)
+void	horizontal_intersections(t_scene *s, t_ray *ray, double *hor_x_dist, double *hor_y_dist)
 {
 	double	inter_y;
 	double	inter_x;
@@ -20,8 +20,7 @@ void	horizontal_intersections(t_scene *s, t_ray *ray, double *hor_x_dist, double
 	inter_y = floor(s->player.pos.y / TILE_SIZE) * TILE_SIZE;
 	if (ray->is_down)
 		inter_y += TILE_SIZE;
-	(void)column;
-	inter_x = s->player.pos.x + (inter_y - s->player.pos.y) / tan(ray->angle);
+	inter_x = s->player.pos.x + ((inter_y - s->player.pos.y) / tan(ray->angle));
 	ray->hor_y_step = TILE_SIZE;
 	if (!ray->is_down)
 		ray->hor_y_step *= -1;
@@ -86,12 +85,12 @@ void	horizontal_ray_down(t_scene *s, t_ray *ray, double *hor_x_dist, double *hor
 	}
 }
 
-void	horizontal_ray(t_scene *s, t_ray *ray, int column)
+void	horizontal_ray(t_scene *s, t_ray *ray)
 {
 	double hor_x_dist;
 	double hor_y_dist;
 
-	horizontal_intersections(s, ray, &hor_x_dist, &hor_y_dist, column);
+	horizontal_intersections(s, ray, &hor_x_dist, &hor_y_dist);
 	horizontal_ray_up(s, ray, &hor_x_dist, &hor_y_dist);
 	horizontal_ray_down(s, ray, &hor_x_dist, &hor_y_dist);
 }

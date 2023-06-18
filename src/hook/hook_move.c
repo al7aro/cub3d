@@ -48,18 +48,19 @@ void	scene_log_map2(t_scene *s, int x, int y)
 
 int	player_move(int keycode, t_scene *s)
 {
-	if (keycode == 13)
+	if (keycode == W || keycode == W_LINUX)
 		s->player.pos.y += 2;
-	if (keycode == 1)
+	if (keycode == S || keycode == S_LINUX)
 		s->player.pos.y -= 2;
-	if (keycode == 0)
+	if (keycode == A || keycode == A_LINUX)
 		s->player.pos.x += 2;
-	if (keycode == 2)
+	if (keycode == D || keycode == D_LINUX)
 		s->player.pos.x -= 2;
-	if (keycode == 13 || keycode == 1 || keycode == 0 || keycode == 2)
+	if (keycode == A || keycode == A_LINUX || keycode == S || keycode == S_LINUX
+		|| keycode == D || keycode == D_LINUX || keycode == W || keycode == W_LINUX)
 	{
 		scene_log_map2(s,  (s->player.pos.y -10)/20,(s->player.pos.x -10)/20);
-		printf("\nplayer: (%f, %f) orientation: %f \n", s->player.pos.x, s->player.pos.y, s->player.dir.x);
+		//printf("\nplayer: (%f, %f) orientation: %f \n", s->player.pos.x, s->player.pos.y, s->player.dir.x);
 	}
 	return (0);
 }
@@ -69,13 +70,13 @@ int	player_rotate(int keycode, t_scene *s)
 	double speed;
 
 	speed = 7 * (M_PI / 180);
-	if (keycode == 123)
+	if (keycode == LEFT || keycode == LEFT_LINUX)
 		s->player.dir.x = angle_fov(s->player.dir.x + (-1 * speed));
-	if (keycode == 124)
+	if (keycode == RIGHT || keycode == RIGHT_LINUX)
 		s->player.dir.x = angle_fov(s->player.dir.x + (1 * speed));
-	if (keycode == 123 || keycode == 124)
+	/*if (keycode == LEFT || keycode == RIGHT || keycode == LEFT_LINUX || keycode == RIGHT_LINUX)
 	{
 		printf("player: (%f, %f) orientation: %f \n", s->player.pos.x, s->player.pos.y, s->player.dir.x);
-	}
+	}*/
 	return (0);
 }

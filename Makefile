@@ -44,8 +44,7 @@ ifneq ($(OS),Windows_NT)
 		MLX_LIB_DIR	=	$(PROJECT_DIR)/libs/mlx_Linux
 		MLX_DIR		=	$(PROJECT_DIR)/libs/mlx_Linux
 		MLX_H_DIR	=	$(MLX_DIR)
-		LIB_FLAGS	=	-L$(MLX_LIB_DIR) -l$(MLX_LIB) -L/usr/lib -lXext -lX11 -lm \
-						-L$(LIBFT_LIB_DIR) -l$(LIBFT_LIB)
+		LIB_FLAGS	=	-L$(MLX_LIB_DIR) -l$(MLX_LIB) -L/usr/lib -lXext -lX11 -lm -L$(LIBFT_LIB_DIR) -l$(LIBFT_LIB)
     endif
     ifeq ($(UNAME_S),Darwin)
 		# ----- If Mac -----
@@ -53,9 +52,7 @@ ifneq ($(OS),Windows_NT)
 		MLX_LIB_DIR	=	$(PROJECT_DIR)/libs/mlx
 		MLX_DIR		=	$(PROJECT_DIR)/libs/mlx
 		MLX_H_DIR	=	$(MLX_DIR)/include
-		LIB_FLAGS	=	-framework OpenGL -framework AppKit \
-						-L$(MLX_LIB_DIR) -l$(MLX_LIB) \
-						-L$(LIBFT_LIB_DIR) -l$(LIBFT_LIB)
+		LIB_FLAGS	=	-framework OpenGL -framework AppKit -L$(MLX_LIB_DIR) -l$(MLX_LIB) -L$(LIBFT_LIB_DIR) -l$(LIBFT_LIB)
     endif
 endif
 
