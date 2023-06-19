@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 01:03:56 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/19 12:10:28 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:21:52 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,20 +95,19 @@ typedef struct s_ray
 	int			is_right;
 	int			ver_x_step;
 	int			ver_y_step;
-	double			hor_x_step;
-	double			hor_y_step;
+	double		hor_x_step;
+	double		hor_y_step;
 	int			wall_hit_hor;
-	double			wall_x_hit_hor;
-	double			wall_y_hit_hor;
+	double		wall_x_hit_hor;
+	double		wall_y_hit_hor;
 	int			wall_hit_ver;
-	double			wall_x_hit_ver;
-	double			wall_y_hit_ver;
-	double			wall_x_hit;
-	double			wall_y_hit;
+	double		wall_x_hit_ver;
+	double		wall_y_hit_ver;
+	double		wall_x_hit;
+	double		wall_y_hit;
 	double		hor_dist;
 	double		ver_dist;
 	t_line		*line;
-
 	double		percert_x;
 	double		percert_y;
 

@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 12:38:35 by ralopez-          #+#    #+#             */
-/*   Updated: 2023/06/19 11:54:37 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:23:31 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	intersection(t_scene *s, t_ray *ray)
 		ray->wall_y_hit = ray->wall_y_hit_hor;
 		ray->wall_hit_ver = 0;
 	}
-	ray->percert_y = ray->wall_y_hit - floor(ray->wall_y_hit);
-	ray->percert_x = ray->wall_x_hit - floor(ray->wall_x_hit);
+	//ray->percert_x = ray->wall_x_hit - floor(ray->wall_x_hit);
+	//ray->percert_y = ray->wall_y_hit - floor(ray->wall_y_hit);
 }
 
 void	dda(t_scene *s, t_ray *ray)
@@ -159,6 +159,8 @@ int	calculate_rays(t_scene *scene, t_img *img)
 		cielling_floor(scene, img, ray_aux);
 
 		//TODO: Textures are drawn from here
+		ray_aux->percert_x = (ray_aux->wall_x_hit / TILE_SIZE) - floor(ray_aux->wall_x_hit / TILE_SIZE);
+		ray_aux->percert_y = (ray_aux->wall_y_hit / TILE_SIZE) - floor(ray_aux->wall_y_hit / TILE_SIZE);
 		if (ray_aux->wall_hit_hor)
 		{
 			if (ray_aux->is_up)
