@@ -6,40 +6,11 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 00:53:16 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/19 14:38:05 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:16:00 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "reader.h"
-
-void	scene_log_map(t_scene *s)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (++i < s->map_size.x + 2)
-		printf("-");
-	i = -1;
-	printf("\n");
-	while (++i < s->map_size.y)
-	{
-		j = -1;
-		printf("|");
-		while (++j < s->map_size.x)
-		{
-			if (s->map[i][j] == '0')
-				printf(STR_RESET"%c"STR_RESET, s->map[i][j]);
-			else if (s->map[i][j] == '1')
-				printf(STR_RED"%c"STR_RESET, s->map[i][j]);
-			else
-				printf(STR_PURPLE"%c"STR_RESET, s->map[i][j]);
-		}
-		printf("|\n");
-	}
-	while (--j >= -2)
-		printf("-");
-}
 
 void	scene_setup(t_scene *s)
 {

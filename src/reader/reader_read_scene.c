@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:24:12 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/19 13:06:33 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:05:25 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	reader_texture(t_scene *s, char *const line,
 			&s->tex[type].w, &s->tex[type].h);
 	if (tex_path)
 		free(tex_path);
-	s->tex[type].anim_size = 16;
+	s->tex[type].anim_size = 1;
 	s->anim_current = 0;
 	s->tex[type].w = s->tex[type].w / s->tex[type].anim_size;
 	if (s->tex[type].img)
@@ -49,7 +49,7 @@ void	reader_texture(t_scene *s, char *const line,
 				&s->tex[type].bpp, &s->tex[type].len,
 				&s->tex[type].endian);
 	else
-		return (error_list_add(err, error_new(BAD_TEXTURE, line)));
+		return (error_list_add(err, error_new(TEXTURE_NOT_FOUND)));
 }
 
 void	reader_room_color(t_scene *s, char *const line,
@@ -64,10 +64,10 @@ void	reader_room_color(t_scene *s, char *const line,
 		type = FLOOR;
 	s->col[type] = read_color(line + i);
 	if (s->col[type] == -1 || check_color(line, &i) == -1)
-		return (error_list_add(err, error_new(BAD_SYNTAX, line)));
+		return (error_list_add(err, error_new(BAD_SYNTAX)));
 	i += skip_space(line + i);
 	if (*(line + i) != '\0' && *(line + i) != '#')
-		return (error_list_add(err, error_new(BAD_SYNTAX, line)));
+		return (error_list_add(err, error_new(BAD_SYNTAX)));
 	printf("Read ");
 	if (type == CIELLING)
 		printf("cielling");

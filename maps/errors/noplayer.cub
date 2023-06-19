@@ -1,0 +1,15 @@
+NO ./assets/textures/N.xpm	# Texture of north-facing walls
+SO ./assets/textures/S.xpm	# Texture of south-facing walls
+WE ./assets/textures/W.xpm	# Texture of west-facing walls
+EA ./assets/textures/E.xpm	# Texture of east-facing walls
+
+F 50,100,10								# Floor color
+C 100,100,255							# Ceilling color
+
+# Closed Map (Without #)
+
+11111
+10001
+10001
+10001
+11111

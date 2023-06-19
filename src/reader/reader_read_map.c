@@ -6,44 +6,11 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 20:11:27 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/08 13:00:52 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:21:06 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "reader.h"
-
-static char	is_player(char c)
-{
-	if (c == 'N' || c == 'S'
-		|| c == 'E' || c == 'W')
-		return (1);
-	return (0);
-}
-
-char	check_map_line(t_scene *s, char *line)
-{
-	size_t	i;
-
-	i = skip_space(line);
-	while (*(line + i) == '1' || *(line + i) == '0' || is_player(*(line + i)))
-	{
-		if (is_player(*(line + i))
-			&& (s->player.dir.x != 0 || s->player.dir.y != 0))
-			return (0);
-		if (*(line + i) == 'N')
-			s->player.dir = (t_vec2){.x = 0, .y = 1};
-		else if (*(line + i) == 'S')
-			s->player.dir = (t_vec2){.x = 0, .y = -1};
-		else if (*(line + i) == 'E')
-			s->player.dir = (t_vec2){.x = 1, .y = 0};
-		else if (*(line + i) == 'W')
-			s->player.dir = (t_vec2){.x = -1, .y = 0};
-		i++;
-	}
-	if (*(line + i - 1) != '1')
-		return (0);
-	return (1);
-}
 
 static char	*resize_line(char *str, size_t size)
 {
@@ -87,11 +54,4 @@ void	map_add_line(t_scene *s, char *const line)
 	if (s->map)
 		free(s->map);
 	s->map = new_map;
-}
-
-void	reader_map(t_scene *s, char *const line, t_error_list *err)
-{
-	if (!check_map_line(s, line))
-		return (error_list_add(err, error_new(BAD_MAP, line)));
-	map_add_line(s, line);
 }

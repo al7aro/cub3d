@@ -31,17 +31,18 @@ typedef enum e_map_error
 	UNKNOWN_OBJECT,
 	OUT_OF_RANGE,
 	BAD_SYNTAX,
-	TOO_MANY_OBJ,
 	MAP_NOT_FOUND,
 	BAD_TEXTURE,
+	TEXTURE_NOT_FOUND,
 	BAD_MAP,
-	MAP_NOT_CLOSED
+	MAP_NOT_CLOSED,
+	NO_PLAYER,
+	EMPTY_MAP
 }				t_map_error;
 
 typedef struct s_error
 {
 	t_map_error	type;
-	char		*line;
 }					t_error;
 
 typedef struct s_error_list
@@ -51,7 +52,7 @@ typedef struct s_error_list
 
 void		error_delete(void *content);
 void		error_log(void *content);
-void		*error_new(t_map_error type, char *const line);
+void		*error_new(t_map_error type);
 
 void		error_list_init(t_error_list *err_list);
 void		error_list_log(t_error_list *err_list);

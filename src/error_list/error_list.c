@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:24:04 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/05/31 23:36:01 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:04:05 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	error_list_init(t_error_list *err_list)
 {
-	err_list->err = ft_lstnew(error_new(OK, "No error\n"));
+	err_list->err = ft_lstnew(error_new(OK));
 }
 
 void	error_list_add(t_error_list *err_list, t_error *err)
