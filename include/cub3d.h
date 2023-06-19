@@ -89,20 +89,19 @@ typedef struct s_ray
 	int			is_right;
 	int			ver_x_step;
 	int			ver_y_step;
-	double			hor_x_step;
-	double			hor_y_step;
+	double		hor_x_step;
+	double		hor_y_step;
 	int			wall_hit_hor;
-	double			wall_x_hit_hor;
-	double			wall_y_hit_hor;
+	double		wall_x_hit_hor;
+	double		wall_y_hit_hor;
 	int			wall_hit_ver;
-	double			wall_x_hit_ver;
-	double			wall_y_hit_ver;
-	int			wall_x_hit;
-	int			wall_y_hit;
+	double		wall_x_hit_ver;
+	double		wall_y_hit_ver;
+	double		wall_x_hit;
+	double		wall_y_hit;
 	double		hor_dist;
 	double		ver_dist;
 	t_line		*line;
-
 	double		percert_x;
 	double		percert_y;
 
