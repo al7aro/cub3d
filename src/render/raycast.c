@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralopez- <ralopez-@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 12:38:35 by ralopez-          #+#    #+#             */
-/*   Updated: 2023/06/09 12:38:38 by ralopez-         ###   ########.fr       */
+/*   Updated: 2023/06/19 11:54:37 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	intersection(t_scene *s, t_ray *ray)
 		ray->wall_y_hit = ray->wall_y_hit_hor;
 		ray->wall_hit_ver = 0;
 	}
-	ray->percert_x = ray->wall_x_hit - floor(ray->wall_x_hit);
 	ray->percert_y = ray->wall_y_hit - floor(ray->wall_y_hit);
+	ray->percert_x = ray->wall_x_hit - floor(ray->wall_x_hit);
 }
 
 void	dda(t_scene *s, t_ray *ray)
@@ -118,16 +118,16 @@ void	clean_prev_ray(t_ray **ray)
 }
 
 void	cielling_floor(t_scene *scene, t_img *img, t_ray *ray_aux)
-{	
+{
 	t_line line_sky;
-	
+
 	line_sky.x0 = ray_aux->line->x0;
 	line_sky.y0 = -1;
 	line_sky.x1 = ray_aux->line->x1;
 	line_sky.y1 = SCENE_HEIGHT / 2;
 	draw_line(img, line_sky, scene->col[CIELLING]);
 	line_sky.y0 = SCENE_HEIGHT / 2;
-	line_sky.y1 = SCENE_HEIGHT;	
+	line_sky.y1 = SCENE_HEIGHT;
 	draw_line(img, line_sky, scene->col[FLOOR]);
 }
 
@@ -144,7 +144,7 @@ int	calculate_rays(t_scene *scene, t_img *img)
 	ray  = (t_ray **)malloc(sizeof(t_ray *) * SCENE_WIDTH);
 	if (ray == NULL)
 		return (-1);
-	x = -1; 
+	x = -1;
 	while (++x < SCENE_WIDTH)
 	{
 		ray_aux = (t_ray *)malloc(sizeof(t_ray));
@@ -157,25 +157,22 @@ int	calculate_rays(t_scene *scene, t_img *img)
 		throw_ray(ray_aux, scene, angle);
 		calculate_hight(ray_aux, x, angle);
 		cielling_floor(scene, img, ray_aux);
-		
 
+		//TODO: Textures are drawn from here
 		if (ray_aux->wall_hit_hor)
 		{
 			if (ray_aux->is_up)
-				draw_line(img, *ray_aux->line,  rbg_to_int(255, 0, 0));
+				texture_vline(scene, ray_aux, NORTH);
 			else
-				draw_line(img, *ray_aux->line,  rbg_to_int(0, 255, 0));
+				texture_vline(scene, ray_aux, SOUTH);
 		}
 		else
 		{
 			if (ray_aux->is_left)
-				draw_line(img, *ray_aux->line,  rbg_to_int(0, 0, 255));
+				texture_vline(scene, ray_aux, WEST);
 			else
-				draw_line(img, *ray_aux->line,  rbg_to_int(255, 255, 0));
+				texture_vline(scene, ray_aux, EAST);
 		}
-
-
-
 		angle =  angle_fov(angle  + (FOV/ SCENE_WIDTH));
 	}
 	return (0);

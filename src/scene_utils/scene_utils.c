@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 00:53:16 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/18 21:42:36 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/18 23:01:21 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,13 @@ void	mlx_setup_init(t_scene *s)
 			s->mlx->img[SCENE].res.x, s->mlx->img[SCENE].res.y);
 	s->mlx->img[SCENE].addr = mlx_get_data_addr(s->mlx->img[SCENE].img,
 			&s->mlx->img[SCENE].bpp,
-			&s->mlx->img[SCENE].line_size,
+			&s->mlx->img[SCENE].len,
 			&s->mlx->img[SCENE].endian);
 	s->mlx->img[MINIMAP].img = mlx_new_image(s->mlx->mlx,
 			s->mlx->img[MINIMAP].res.x, s->mlx->img[MINIMAP].res.y);
 	s->mlx->img[MINIMAP].addr = mlx_get_data_addr(s->mlx->img[MINIMAP].img,
 			&s->mlx->img[MINIMAP].bpp,
-			&s->mlx->img[MINIMAP].line_size,
+			&s->mlx->img[MINIMAP].len,
 			&s->mlx->img[MINIMAP].endian);
 }
 

@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 01:03:56 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/18 21:28:49 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:10:28 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define SOUTH 1
 # define WEST 2
 # define EAST 3
+
+# define ANIMTAION_SIZE 16
 
 /* Color Indices */
 # define FLOOR 0
@@ -51,7 +53,7 @@ typedef struct s_img
 	void	*img;
 	char	*addr;
 	int		bpp;
-	int		line_size;
+	int		len;
 	int		endian;
 }				t_img;
 
@@ -71,6 +73,8 @@ typedef struct s_tex
 	int		endian;
 	int		w;
 	int		h;
+	int		x_anim;
+	int		y_anim;
 }			t_tex;
 
 typedef struct s_player
@@ -99,8 +103,8 @@ typedef struct s_ray
 	int			wall_hit_ver;
 	double			wall_x_hit_ver;
 	double			wall_y_hit_ver;
-	int			wall_x_hit;
-	int			wall_y_hit;
+	double			wall_x_hit;
+	double			wall_y_hit;
 	double		hor_dist;
 	double		ver_dist;
 	t_line		*line;
