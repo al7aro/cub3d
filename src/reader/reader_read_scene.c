@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:24:12 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/19 13:06:33 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/19 16:36:21 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,17 @@ void	reader_texture(t_scene *s, char *const line,
 			&s->tex[type].w, &s->tex[type].h);
 	if (tex_path)
 		free(tex_path);
-	s->tex[type].anim_size = 16;
+	end += skip_space(line + end + 1) + 1;
+	s->tex[type].anim_size = ((double)ft_atoi(line + end));
+	if (s->tex[type].anim_size == 0)
+		s->tex[type].anim_size = 1;
 	s->anim_current = 0;
+	end += skip_num(line + end);
+	end += skip_space(line + end);
+	if ((*(line + end) != '\0' && *(line + end) != '#' && *(line + end) != '\n')
+		|| s->tex[type].anim_size <= 0
+		|| s->tex[type].anim_size >= s->tex[type].w)
+		return (error_list_add(err, error_new(BAD_TEXTURE, line)));
 	s->tex[type].w = s->tex[type].w / s->tex[type].anim_size;
 	if (s->tex[type].img)
 		s->tex[type].addr = mlx_get_data_addr(s->tex[type].img,
@@ -66,7 +75,7 @@ void	reader_room_color(t_scene *s, char *const line,
 	if (s->col[type] == -1 || check_color(line, &i) == -1)
 		return (error_list_add(err, error_new(BAD_SYNTAX, line)));
 	i += skip_space(line + i);
-	if (*(line + i) != '\0' && *(line + i) != '#')
+	if (*(line + i) != '\0' && *(line + i) != '#' && *(line + i) != '\n')
 		return (error_list_add(err, error_new(BAD_SYNTAX, line)));
 	printf("Read ");
 	if (type == CIELLING)
