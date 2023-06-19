@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 00:53:16 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/18 23:01:21 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:38:05 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	scene_setup(t_scene *s)
 	s->player.dir = (t_vec2){.x = 0.0, .y = 0.0};
 	s->col[CIELLING] = 0;
 	s->col[FLOOR] = 0;
+	s->time_sim = 0;
 }
 
 void	mlx_setup(t_scene *scene)

@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 12:38:35 by ralopez-          #+#    #+#             */
-/*   Updated: 2023/06/19 12:23:31 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:39:24 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,6 @@ int	calculate_rays(t_scene *scene, t_img *img)
 		calculate_hight(ray_aux, x, angle);
 		cielling_floor(scene, img, ray_aux);
 
-		//TODO: Textures are drawn from here
 		ray_aux->percert_x = (ray_aux->wall_x_hit / TILE_SIZE) - floor(ray_aux->wall_x_hit / TILE_SIZE);
 		ray_aux->percert_y = (ray_aux->wall_y_hit / TILE_SIZE) - floor(ray_aux->wall_y_hit / TILE_SIZE);
 		if (ray_aux->wall_hit_hor)

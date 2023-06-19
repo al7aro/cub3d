@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 01:03:56 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/19 13:07:06 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:37:43 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ typedef struct s_scene
 	t_mlx		*mlx;
 	t_tex		tex[4];
 	long int	anim_current;
+	long int	time_sim;
 	int			col[2];
 	char		**map;
 	t_vec2		map_size;
