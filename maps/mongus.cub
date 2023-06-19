@@ -1,7 +1,7 @@
-NO ./assets/textures/north_texture.xpm	# Texture of north-facing walls
-SO ./assets/textures/south_texture.xpm	# Texture of south-facing walls
-WE ./assets/textures/west_texture.xpm	# Texture of west-facing walls
-EA ./assets/textures/east_texture.xpm	# Texture of east-facing walls
+NO ./assets/textures/north_texture.xpm 1 # Texture of north-facing walls
+SO ./assets/textures/south_texture.xpm 1 # Texture of south-facing walls
+WE ./assets/textures/west_texture.xpm  1 # Texture of west-facing walls
+EA ./assets/textures/east_texture.xpm 1 # Texture of east-facing walls
 
 F 50,100,10								# Floor color
 C 100,100,100							# Ceilling color
