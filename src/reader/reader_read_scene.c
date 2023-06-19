@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:24:12 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/08 13:01:05 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/19 13:06:33 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ void	reader_texture(t_scene *s, char *const line,
 			&s->tex[type].w, &s->tex[type].h);
 	if (tex_path)
 		free(tex_path);
+	s->tex[type].anim_size = 16;
+	s->anim_current = 0;
+	s->tex[type].w = s->tex[type].w / s->tex[type].anim_size;
 	if (s->tex[type].img)
 		s->tex[type].addr = mlx_get_data_addr(s->tex[type].img,
 				&s->tex[type].bpp, &s->tex[type].len,

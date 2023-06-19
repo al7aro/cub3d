@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 00:12:11 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/18 21:51:35 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:57:45 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,14 @@ int	render_minimap(t_scene *s, int type)
 int	render_scene(t_scene *s, int type)
 {
 	t_img	*img;
+	static long int i = 0;
 
+	i++;
 	img = &s->mlx->img[type];
 	draw_background(img, rbg_to_int(255, 255, 255));
 	calculate_rays(s, img);
+	if (!(i % 5))
+		s->anim_current++;
 	return (0);
 }
 
