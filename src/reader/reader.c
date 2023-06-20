@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:24:14 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/20 13:38:23 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/20 13:40:23 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	parse_line(t_scene *s, char *const line, t_error_list *err)
 		error_list_add(err, error_new(UNKNOWN_OBJECT));
 }
 
-static void is_item_missing(t_scene *s, t_error_list *err)
+static void	is_item_missing(t_scene *s, t_error_list *err)
 {
 	if (s->tex[NORTH].img == NULL || s->tex[SOUTH].img == NULL
 		|| s->tex[WEST].img == NULL || s->tex[EAST].img == NULL)
