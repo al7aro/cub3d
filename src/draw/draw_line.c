@@ -59,7 +59,6 @@ static void	high(t_img *img, t_line l, int c)
 	d = (2 * dx) - dy;
 	while (l.y0++ < l.y1)
 	{
-		
 		draw_point_novector(img, l.x0, l.y0, c);
 		if (d > 0)
 		{

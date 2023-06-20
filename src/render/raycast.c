@@ -66,18 +66,12 @@ int	malloc_ray(t_ray **ray_aux)
 
 int	calculate_rays(t_scene *scene, t_img *img)
 {
-	t_ray	**ray;
 	t_ray	*ray_aux;
 	double	angle;
 	int		x;
 
 	ray_aux = NULL;
-	ray = scene->ray;
 	angle = angle_fov(scene->player.dir.x - (FOV / 2));
-	clean_prev_ray(scene->ray);
-	ray = (t_ray **)malloc(sizeof(t_ray *) * SCENE_WIDTH);
-	if (ray == NULL)
-		return (-1);
 	x = -1;
 	while (++x < SCENE_WIDTH)
 	{
@@ -89,6 +83,8 @@ int	calculate_rays(t_scene *scene, t_img *img)
 		cielling_floor(scene, img, ray_aux);
 		draw_wall(scene, ray_aux);
 		angle = angle_fov(angle + (FOV / SCENE_WIDTH));
+		free(ray_aux->line);
+		free(ray_aux);
 	}
 	return (0);
 }
