@@ -31,14 +31,9 @@ typedef enum e_map_error
 	UNKNOWN_OBJECT,
 	OUT_OF_RANGE,
 	BAD_SYNTAX,
-	MAP_NOT_FOUND,
 	BAD_TEXTURE,
-	TEXTURE_NOT_FOUND,
 	BAD_MAP,
-	MAP_NOT_CLOSED,
-	NO_PLAYER,
-	EMPTY_MAP,
-	INVALID_SUFFIX
+	NO_PLAYER
 }				t_map_error;
 
 typedef struct s_error

@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:24:12 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/19 16:41:33 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/20 15:31:11 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,15 @@ void	reader_texture(t_scene *s, char *const line,
 	s->tex[type].anim_size = ((double)ft_atoi(line + end));
 	if (s->tex[type].anim_size == 0)
 		s->tex[type].anim_size = 1;
-	s->anim_current = 0;
 	end += skip_num(line + end);
 	end += skip_space(line + end);
 	if ((*(line + end) != '\0' && *(line + end) != '#' && *(line + end) != '\n')
 		|| s->tex[type].anim_size <= 0
-		|| s->tex[type].anim_size >= s->tex[type].w)
+		|| s->tex[type].anim_size >= s->tex[type].w || !s->tex[type].img)
 		return (error_list_add(err, error_new(BAD_TEXTURE)));
 	s->tex[type].w = s->tex[type].w / s->tex[type].anim_size;
-	if (s->tex[type].img)
-		s->tex[type].addr = mlx_get_data_addr(s->tex[type].img,
-				&s->tex[type].bpp, &s->tex[type].len,
-				&s->tex[type].endian);
-	else
-		return (error_list_add(err, error_new(TEXTURE_NOT_FOUND)));
+	s->tex[type].addr = mlx_get_data_addr(s->tex[type].img,
+			&s->tex[type].bpp, &s->tex[type].len, &s->tex[type].endian);
 }
 
 void	reader_room_color(t_scene *s, char *const line,
