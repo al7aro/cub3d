@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralopez- <ralopez-@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 12:38:35 by ralopez-          #+#    #+#             */
-/*   Updated: 2023/06/09 12:38:38 by ralopez-         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:24:52 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	calculate_rays(t_scene *scene, t_img *img)
 		throw_ray(ray_aux, scene, angle);
 		calculate_hight(ray_aux, x, angle);
 		cielling_floor(scene, img, ray_aux);
-		draw_wall(img, ray_aux);
+		draw_wall(scene, ray_aux);
 		angle = angle_fov(angle + (FOV / SCENE_WIDTH));
 	}
 	return (0);

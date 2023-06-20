@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 01:03:56 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/08 12:51:25 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:14:03 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define MINIMAP_WIDTH 500
 # define MINIMAP_HEIGHT 200
 # define TILE_SIZE 1000
+# define MAP_TILE_SIZE 5
 # define FOV 60 * (M_PI / 180)
 
 /* Tex Indices */
@@ -27,13 +28,16 @@
 # define WEST 2
 # define EAST 3
 
+# define ANIMTAION_SIZE 16
+
 /* Color Indices */
 # define FLOOR 0
 # define CIELLING 1
 
 /* Windows Indices */
-# define WINDOWS_NUM 1
+# define WINDOWS_NUM 2
 # define SCENE 0
+# define MINIMAP 1
 
 /* Player */
 # define PLAYER_SPEED (0.35 * TILE_SIZE)
@@ -50,14 +54,14 @@ typedef struct s_img
 	void	*img;
 	char	*addr;
 	int		bpp;
-	int		line_size;
+	int		len;
 	int		endian;
 }				t_img;
 
 typedef struct s_mlx
 {
 	void	*mlx;
-	void	*win[WINDOWS_NUM];
+	void	*win;
 	t_img	img[WINDOWS_NUM];
 }				t_mlx;
 
@@ -70,6 +74,7 @@ typedef struct s_tex
 	int		endian;
 	int		w;
 	int		h;
+	int		anim_size;
 }			t_tex;
 
 typedef struct s_player
@@ -113,6 +118,8 @@ typedef struct s_scene
 {
 	t_mlx		*mlx;
 	t_tex		tex[4];
+	long int	anim_current;
+	long int	time_sim;
 	int			col[2];
 	char		**map;
 	t_vec2		map_size;

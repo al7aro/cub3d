@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:24:14 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/08 13:06:23 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:20:32 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ static void	parse_line(t_scene *s, char *const line, t_error_list *err)
 	else if (!ft_strncmp(line + i, "C", 1))
 		reader_room_color(s, line + i + 1, err, CIELLING);
 	else if (is_space(*(line + i)) || *(line + i) == '1')
-		reader_map(s, line, err);
+		map_add_line(s, line);
 	else if (!((*(line + i) == '#') || (*(line + i) == '\0')))
-		error_list_add(err, error_new(UNKNOWN_OBJECT, line));
+		error_list_add(err, error_new(UNKNOWN_OBJECT));
 }
 
 t_map_error	reader(t_scene *s, char *const path)
@@ -62,6 +62,5 @@ t_map_error	reader(t_scene *s, char *const path)
 	error_list_log(&err_list);
 	error_list_delete(&err_list);
 	close(fd);
-	scene_log_map(s);
 	return (ret);
 }
