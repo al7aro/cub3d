@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 23:29:08 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/08 13:02:38 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:01:11 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ int	hook_key_pressed(int keycode, void *param);
 int	player_move(int keycode, t_scene *s);
 int	player_rotate(int keycode, t_scene *s);
 int	esc_exit(int keycode, t_scene *s);
+int	minimap_show(int keycode, t_scene *s);
 
 #endif

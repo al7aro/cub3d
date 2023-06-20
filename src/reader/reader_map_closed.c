@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 22:42:48 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/20 15:41:18 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:05:13 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ void	reader_is_map_closed(t_scene *scene, t_error_list *err)
 	player = 0;
 	m = scene->map;
 	j = 0;
-	if (scene->map_size.x == 1 || scene->map_size.y == 1)
+	if (scene->map_size.x <= 1 || scene->map_size.y <= 1
+		|| scene->map_size.x >= MAP_LIMIT_X || scene->map_size.y >= MAP_LIMIT_Y)
 		return (error_list_add(err, error_new(BAD_MAP)));
 	while (++j < scene->map_size.y - 1 && *(m + j))
 	{
