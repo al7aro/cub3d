@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:24:14 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/19 15:20:32 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/20 13:30:50 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ static void	parse_line(t_scene *s, char *const line, t_error_list *err)
 		error_list_add(err, error_new(UNKNOWN_OBJECT));
 }
 
+static void is_item_missing(t_scene *s, t_error_list *err)
+{
+	if (s->tex[NORTH].img == NULL || s->tex[SOUTH].img == NULL
+		|| s->tex[WEST].img == NULL || s->tex[EAST].img == NULL)
+		error_list_add(err, error_new(BAD_TEXTURE));
+}
+
 t_map_error	reader(t_scene *s, char *const path)
 {
 	int				fd;
@@ -58,6 +65,7 @@ t_map_error	reader(t_scene *s, char *const path)
 	}
 	map_add_line(s, " ");
 	reader_is_map_closed(s, &err_list);
+	is_item_missing(s, &err_list);
 	ret = (ft_lstsize(err_list.err) > 1);
 	error_list_log(&err_list);
 	error_list_delete(&err_list);
