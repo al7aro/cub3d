@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 00:12:11 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/19 14:38:23 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:31:29 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	render_minimap(t_scene *s, int type)
 			if (i == 0 || j == 0
 				|| i == s->map_size.x - 1 || j == s->map_size.y - 1)
 				draw_rect(img, (t_rect){i * MAP_TILE_SIZE, j * MAP_TILE_SIZE,
-					MAP_TILE_SIZE, MAP_TILE_SIZE}, rbg_to_int(0, 0, 0));
+				MAP_TILE_SIZE, MAP_TILE_SIZE}, rbg_to_int(0, 0, 0));
 			i++;
 		}
 		j++;

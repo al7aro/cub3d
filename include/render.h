@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 00:08:46 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/20 12:24:48 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:32:39 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ typedef struct s_line
 	double	pixels;
 }				t_line;
 
-typedef struct s_img t_img;
-typedef struct s_scene t_scene;
-typedef struct s_ray t_ray;
+typedef struct s_img	t_img;
+typedef struct s_scene	t_scene;
+typedef struct s_ray	t_ray;
 
 int		on_loop(t_scene *s);
 
@@ -80,6 +80,6 @@ int		hits_walll(t_scene *s, double h_dist, double v_dist);
 double	distance(double x_start, double y_start, double x_end, double y_end);
 
 /* Textures */
-int	texture_vline(t_scene *s, t_ray *ray, int orientation);
+int		texture_vline(t_scene *s, t_ray *ray, int orientation);
 
 #endif

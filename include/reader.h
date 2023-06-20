@@ -77,5 +77,4 @@ int			check_int(char *const line, size_t *i);
 int			check_color(char *const line, size_t *i);
 int			read_color(char *const line);
 
-
 #endif
