@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 22:42:48 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/20 16:05:13 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/21 00:04:03 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static char	set_player_pos(t_scene *scene, int x, int y, int position)
 {
-	scene->player.pos.x = (double)((x - 0.5) * TILE_SIZE);
-	scene->player.pos.y = (double)((y - 0.5) * TILE_SIZE);
+	scene->player.pos.x = (double)((x + 0.5) * TILE_SIZE);
+	scene->player.pos.y = (double)((y + 0.5) * TILE_SIZE);
 	if (position == 'N')
 		scene->player.dir.x = 3 * M_PI_2;
 	else if (position == 'S')
