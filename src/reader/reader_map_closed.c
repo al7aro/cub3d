@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 22:42:48 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/20 15:20:40 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/20 15:41:18 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ void	reader_is_map_closed(t_scene *scene, t_error_list *err)
 			if (wall_is_open(m, i, j))
 				return (error_list_add(err, error_new(BAD_MAP)));
 			if (is_player(*(*(m + j) + i)))
-				player = set_player_pos(scene, i, j, *(*(m + j) + i));
+				player += set_player_pos(scene, i, j, *(*(m + j) + i));
 		}
 	}
-	if (!player)
-		return (error_list_add(err, error_new(NO_PLAYER)));
+	if (player != 1)
+		return (error_list_add(err, error_new(BAD_PLAYER)));
 }
