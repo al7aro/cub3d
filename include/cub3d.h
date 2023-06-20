@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 01:03:56 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/20 16:05:03 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/20 23:50:56 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 # define CUB3D_H
 
 /* Res */
-# define SCENE_WIDTH 500
-# define SCENE_HEIGHT 500
+# define SCENE_WIDTH 800
+# define SCENE_HEIGHT 800
 // # define MINIMAP_WIDTH 500
 // # define MINIMAP_HEIGHT 200
 # define TILE_SIZE 1000
 # define MAP_TILE_SIZE 5
 
 /* # define MAP_LIMIT_X SCENE_WIDTH / MAP_TILE_SIZE */
-# define MAP_LIMIT_X 100
+# define MAP_LIMIT_X 160
 /* # define MAP_LIMIT_Y SCENE_HEIGHT / MAP_TILE_SIZE */
-# define MAP_LIMIT_Y 100
+# define MAP_LIMIT_Y 160
 
 /*# define FOV 60 * (M_PI / 180)*/
 # define FOV 1.047197551
@@ -49,8 +49,8 @@
 /* Player */
 /*# define PLAYER_SPEED (0.35 * TILE_SIZE)*/
 # define PLAYER_SPEED 350
-/*# define ROTATION_SPEED 7 * (M_PI / 180)*/
-# define ROTATION_SPEED 0.1221730476
+/*# define ROTATION_SPEED 12 * (M_PI / 180)*/
+# define ROTATION_SPEED 0.1745329252
 
 # include "math_cub.h"
 # include "render.h"

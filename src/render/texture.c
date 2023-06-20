@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 22:44:39 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/20 12:42:42 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/20 22:44:05 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ int	texture_get_color(t_scene *s, t_tex tex, t_ivec2 pos)
 	int	color;
 	int	offset;
 
+	if (pos.x < 0)
+		pos.x = 0;
+	if (pos.y < 0)
+		pos.y = 0;
 	offset = (s->anim_current % tex.anim_size) * tex.w;
 	color = *(unsigned int *)(tex.addr
 			+ ((pos.x + offset) * (tex.bpp / 8) + pos.y * tex.len));

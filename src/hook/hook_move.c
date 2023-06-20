@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 23:33:54 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/08 13:01:59 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/20 23:56:26 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ int	player_move(int keycode, t_scene *s)
 		angle = angle_fov(move_angle - M_PI_2);
 	if (keycode == D || keycode == D_LINUX)
 		angle = angle_fov(move_angle + M_PI_2);
-	next_x = s->player.pos.x + (cos(angle) * PLAYER_SPEED);
-	next_y = s->player.pos.y + (sin(angle) * PLAYER_SPEED);
+	next_x = s->player.pos.x + (cos(angle) * PLAYER_SPEED * 2);
+	next_y = s->player.pos.y + (sin(angle) * PLAYER_SPEED * 2);
 	if (!hits_walll(s, next_x, next_y))
 	{
-		s->player.pos.x = next_x;
-		s->player.pos.y = next_y;
+		s->player.pos.x += (cos(angle) * PLAYER_SPEED);
+		s->player.pos.y += (sin(angle) * PLAYER_SPEED);
 	}
 	return (0);
 }
