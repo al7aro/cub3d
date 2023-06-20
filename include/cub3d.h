@@ -18,7 +18,7 @@
 # define SCENE_HEIGHT 500
 # define MINIMAP_WIDTH 500
 # define MINIMAP_HEIGHT 200
-# define TILE_SIZE 20
+# define TILE_SIZE 1000
 # define FOV 60 * (M_PI / 180)
 
 /* Tex Indices */

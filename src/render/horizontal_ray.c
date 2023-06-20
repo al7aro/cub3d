@@ -12,7 +12,8 @@
 
 #include "render.h"
 
-void	horizontal_intersections(t_scene *s, t_ray *ray, double *hor_x_dist, double *hor_y_dist)
+void	horizontal_intersections(t_scene *s, t_ray *ray,
+	double *hor_x_dist, double *hor_y_dist)
 {
 	double	inter_y;
 	double	inter_x;
@@ -33,7 +34,8 @@ void	horizontal_intersections(t_scene *s, t_ray *ray, double *hor_x_dist, double
 	*hor_y_dist = inter_y;
 }
 
-void	horizontal_ray_up(t_scene *s, t_ray *ray, double *hor_x_dist, double *hor_y_dist)
+void	horizontal_ray_up(t_scene *s, t_ray *ray,
+	double *hor_x_dist, double *hor_y_dist)
 {
 	if (ray->is_down)
 		return ;
@@ -59,7 +61,8 @@ void	horizontal_ray_up(t_scene *s, t_ray *ray, double *hor_x_dist, double *hor_y
 	}
 }
 
-void	horizontal_ray_down(t_scene *s, t_ray *ray, double *hor_x_dist, double *hor_y_dist)
+void	horizontal_ray_down(t_scene *s, t_ray *ray,
+	double *hor_x_dist, double *hor_y_dist)
 {
 	if (ray->is_up)
 		return ;
@@ -87,8 +90,8 @@ void	horizontal_ray_down(t_scene *s, t_ray *ray, double *hor_x_dist, double *hor
 
 void	horizontal_ray(t_scene *s, t_ray *ray)
 {
-	double hor_x_dist;
-	double hor_y_dist;
+	double	hor_x_dist;
+	double	hor_y_dist;
 
 	horizontal_intersections(s, ray, &hor_x_dist, &hor_y_dist);
 	horizontal_ray_up(s, ray, &hor_x_dist, &hor_y_dist);

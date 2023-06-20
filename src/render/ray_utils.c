@@ -37,11 +37,10 @@ void	set_ray_directions(t_ray *ray)
 
 int	ray_beetween_limits(t_scene *s, double h_dist, double v_dist)
 {
-	if (h_dist >= 0 && v_dist >= 0 && 
-		h_dist < s->map_size.x * TILE_SIZE && v_dist < s->map_size.y * TILE_SIZE)
+	if (h_dist >= 0 && v_dist >= 0 && h_dist < s->map_size.x * TILE_SIZE
+		&& v_dist < s->map_size.y * TILE_SIZE)
 		return (1);
 	return (0);
-
 }
 
 int	hits_walll(t_scene *s, double h_dist, double v_dist)

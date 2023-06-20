@@ -12,7 +12,8 @@
 
 #include "render.h"
 
-void	vertical_intersections(t_scene *s, t_ray *ray, double *ver_x_dist, double *ver_y_dist)
+void	vertical_intersections(t_scene *s, t_ray *ray,
+	double *ver_x_dist, double *ver_y_dist)
 {
 	double	inter_y;
 	double	inter_x;
@@ -33,7 +34,8 @@ void	vertical_intersections(t_scene *s, t_ray *ray, double *ver_x_dist, double *
 	*ver_y_dist = inter_y;
 }
 
-void	vertical_rar_right(t_scene *s, t_ray *ray, double *ver_x_dist, double *ver_y_dist)
+void	vertical_rar_right(t_scene *s, t_ray *ray,
+	double *ver_x_dist, double *ver_y_dist)
 {
 	if (ray->is_left)
 		return ;
@@ -59,11 +61,11 @@ void	vertical_rar_right(t_scene *s, t_ray *ray, double *ver_x_dist, double *ver_
 	}
 }
 
-void	vertical_rar_left(t_scene *s, t_ray *ray, double *ver_x_dist, double *ver_y_dist)
+void	vertical_rar_left(t_scene *s, t_ray *ray,
+	double *ver_x_dist, double *ver_y_dist)
 {
 	if (ray->is_right)
 		return ;
-	
 	while (ray_beetween_limits(s, *ver_x_dist, *ver_y_dist))
 	{
 		if (hits_walll(s, (*ver_x_dist) - 1, *ver_y_dist))
@@ -88,8 +90,8 @@ void	vertical_rar_left(t_scene *s, t_ray *ray, double *ver_x_dist, double *ver_y
 
 void	vertical_ray(t_scene *s, t_ray *ray)
 {
-	double ver_x_dist;
-	double ver_y_dist;
+	double	ver_x_dist;
+	double	ver_y_dist;
 
 	vertical_intersections(s, ray, &ver_x_dist, &ver_y_dist);
 	vertical_rar_right(s, ray, &ver_x_dist, &ver_y_dist);
