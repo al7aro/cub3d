@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 08:02:19 by ralopez-          #+#    #+#             */
-/*   Updated: 2023/06/20 12:24:42 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/20 21:41:06 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,8 @@ void	calculate_hight(t_ray *ray, int column, double angle)
 	wall_height = ((SCENE_WIDTH / 2) / tan(FOV / 2)) / fish_eye;
 	ray->line->x0 = column;
 	ray->line->y0 = (SCENE_HEIGHT / 2) - (wall_height / 2);
-	if (ray->line->y0 < 0)
-		ray->line->y0 = 0;
 	ray->line->x1 = column;
 	ray->line->y1 = (SCENE_HEIGHT / 2) + (wall_height / 2);
-	if (ray->line->y1 >= SCENE_HEIGHT)
-		ray->line->y1 = SCENE_HEIGHT - 1;
 }
 
 void	init_ray(t_ray *ray)
