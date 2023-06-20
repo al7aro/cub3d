@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:24:14 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/20 13:37:39 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/20 13:38:23 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_map_error	reader(t_scene *s, char *const path)
 	ret = OK;
 	error_list_init(&err_list);
 	if (ft_strncmp(ft_strchr(path, '.'), ".cub", 5))
-		error_list_add(&err_list, error_new(BAD_MAP));
+		error_list_add(&err_list, error_new(INVALID_SUFFIX));
 	fd = open(path, O_RDONLY);
 	if (-1 == fd)
 		ret = MAP_NOT_FOUND;

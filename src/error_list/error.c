@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:24:06 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/19 15:11:47 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/20 13:38:49 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	error_log(void *content)
 			printf("["STR_PURPLE"TEXTURE_NOT_FOUND"STR_RESET"]\n");
 		else if (BAD_MAP == err->type)
 			printf("["STR_PURPLE"BAD_MAP"STR_RESET"]\n");
+		else if (INVALID_SUFFIX == err->type)
+			printf("["STR_PURPLE"INVALID_SUFFIX"STR_RESET"]\n");
 		else if (EMPTY_MAP == err->type)
 			printf("["STR_PURPLE"EMPTY_MAP"STR_RESET"]\n");
 		else

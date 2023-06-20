@@ -37,7 +37,8 @@ typedef enum e_map_error
 	BAD_MAP,
 	MAP_NOT_CLOSED,
 	NO_PLAYER,
-	EMPTY_MAP
+	EMPTY_MAP,
+	INVALID_SUFFIX
 }				t_map_error;
 
 typedef struct s_error
