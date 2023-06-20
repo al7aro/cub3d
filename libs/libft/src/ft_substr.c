@@ -3,28 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alfgarci <alfgarci@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: ralopez- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/15 14:48:19 by alfgarci          #+#    #+#             */
-/*   Updated: 2022/10/20 16:53:53 by alfgarci         ###   ########.fr       */
+/*   Created: 2022/09/17 12:24:31 by ralopez-          #+#    #+#             */
+/*   Updated: 2022/09/24 16:37:24 by ralopez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "libft.h"
 
-char	*ft_substr(const char *s, unsigned int start, size_t len)
+char	*ft_substr(char const *cad, unsigned int start, size_t len)
 {
 	char	*sub;
+	int		i;
 
-	if (!s)
+	i = 0;
+	sub = NULL;
+	if (len < 0)
 		return (NULL);
-	if (len > ft_strlen(s + start))
-		len = ft_strlen(s + start);
-	if (start >= ft_strlen(s))
-		return (ft_calloc(sizeof(char), 1));
-	sub = (char *)malloc((len + 1) * sizeof(char));
-	if (!sub)
-		return (NULL);
-	ft_strlcpy(sub, (char *)(s + start), len + 1);
+	if (cad != NULL)
+	{
+		if (len < ft_strlen(cad))
+			sub = (char *)ft_calloc(len + 1, sizeof(char));
+		else
+			sub = (char *)ft_calloc(ft_strlen(cad) + 1, sizeof(char));
+		if (sub == NULL)
+			return (NULL);
+		while (len && ft_strlen((char *)cad) > start && cad[start])
+		{
+			sub[i] = cad[start];
+			i++;
+			start++;
+			len--;
+		}
+		sub[i] = '\0';
+	}
 	return (sub);
 }

@@ -3,72 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alfgarci <alfgarci@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: ralopez- <ralopez-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/15 16:12:10 by alfgarci          #+#    #+#             */
-/*   Updated: 2022/09/25 16:32:49 by alfgarci         ###   ########.fr       */
+/*   Created: 2022/09/13 14:51:43 by ralopez-          #+#    #+#             */
+/*   Updated: 2022/09/13 15:53:03 by ralopez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "libft.h"
 
-static int	is_in_set(const char *set, char c)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	int	i;
-
-	i = -1;
-	while (set[++i])
-		if (set[i] == c)
-			return (1);
-	return (0);
-}
-
-static int	len_start(const char *s1, const char *set)
-{
-	int	len_s;
-
-	len_s = -1;
-	while (s1[++len_s])
-		if (!is_in_set(set, s1[len_s]))
-			break ;
-	return (len_s);
-}
-
-static int	len_finsh(const char *s1, const char *set)
-{
-	int	i;
-	int	len_f;
-
-	i = ft_strlen(s1);
-	len_f = 0;
-	while (i > 0)
-	{
-		if (!is_in_set(set, s1[--i]))
-			break ;
-		len_f++;
-	}
-	return (len_f);
-}
-
-char	*ft_strtrim(const char *s1, const char *set)
-{
-	char	*new;
-	int		len_f;
-	int		len_s;
+	int		len_str;
+	char	*str;
 	int		i;
+	int		j;
 
-	if (!s1 || !set)
+	if (s1 == NULL || set == NULL)
 		return (0);
-	len_s = len_start(s1, set);
-	len_f = len_finsh(s1, set);
-	if ((len_s + len_f) >= (int)ft_strlen(s1))
-		return (ft_calloc(sizeof(char), 1));
-	new = (char *)malloc((ft_strlen(s1) - len_s - len_f + 1) * sizeof(char));
-	if (!new)
+	i = 0;
+	j = ft_strlen((char *)s1);
+	while (s1[i] && ft_strchr(set, s1[i]))
+		i++;
+	while (s1[j - 1] && ft_strrchr(set, s1[j - 1]) && j > i)
+		j--;
+	len_str = j - i;
+	str = ft_calloc(len_str + 1, sizeof(char));
+	if (!str)
 		return (0);
-	i = -1;
-	while (++i <= ((int)ft_strlen(s1) - len_s - len_f - 1))
-		new[i] = s1[len_s + i];
-	new[i] = '\0';
-	return (new);
+	ft_strlcpy(str, (char *) &s1[i], len_str + 1);
+	return (str);
 }

@@ -3,28 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alfgarci <alfgarci@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: ralopez- <ralopez-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/15 17:37:50 by alfgarci          #+#    #+#             */
-/*   Updated: 2022/09/25 16:32:29 by alfgarci         ###   ########.fr       */
+/*   Created: 2022/09/13 14:51:43 by ralopez-          #+#    #+#             */
+/*   Updated: 2022/09/13 15:53:03 by ralopez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "libft.h"
 
-char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
+	char	*str;
 	int		i;
-	char	*cad;
 
-	i = -1;
-	if (!s)
+	i = 0;
+	if (f == NULL || s == NULL)
 		return (NULL);
-	cad = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
-	if (!cad)
-		return (NULL);
-	while (s[++i])
-		cad[i] = f(i, s[i]);
-	cad[i] = '\0';
-	return (cad);
+	str = (char *)malloc(sizeof(char) * ft_strlen((char *)s) + 1);
+	if (!str)
+		return (0);
+	while (s[i] != '\0')
+	{
+		str[i] = f(i, s[i]);
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }

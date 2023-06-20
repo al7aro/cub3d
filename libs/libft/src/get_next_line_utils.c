@@ -1,16 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralopez- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/17 12:27:16 by ralopez-          #+#    #+#             */
-/*   Updated: 2022/09/17 12:27:26 by ralopez-         ###   ########.fr       */
+/*   Created: 2022/10/02 14:33:48 by ralopez-          #+#    #+#             */
+/*   Updated: 2023/06/20 14:23:24 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+void	ft_bzero(void *s, size_t n)
+{
+	unsigned char	*str;
+
+	str = (unsigned char *) s;
+	while (n > 0)
+	{
+		*str = '\0';
+		str++;
+		n--;
+	}
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	char	*p;
+
+	p = malloc(count * size);
+	if (!p)
+		return (NULL);
+	ft_bzero(p, size * count);
+	return (p);
+}
+
+size_t	ft_strlen(const char *c)
+{
+	size_t	i;
+
+	i = 0;
+	while (c[i] != '\0')
+		i++;
+	return (i);
+}
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -38,4 +72,16 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	sub[i] = '\0';
 	return (sub);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	while (c > 127)
+		c = c - 128;
+	while (*s && *s != c)
+		s++;
+	if (*s == c)
+		return ((char *)s);
+	else
+		return (NULL);
 }

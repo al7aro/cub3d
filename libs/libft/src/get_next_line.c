@@ -3,102 +3,123 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alfgarci <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/25 17:07:48 by alfgarci          #+#    #+#             */
-/*   Updated: 2022/09/25 17:08:26 by alfgarci         ###   ########.fr       */
+/*   Created: 2022/10/02 14:33:26 by ralopez-          #+#    #+#             */
+/*   Updated: 2023/06/20 14:23:20 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "libft.h"
 
-static char	*read_fd(int fd, char *buffer)
+char	*exchange(char *text, char *cad)
 {
-	char	*buff_tmp;
-	char	*aux;
-	int		last_read;
+	char	*text_aux;
 
-	last_read = 1;
-	buff_tmp = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buff_tmp)
+	text_aux = ft_strjoin(text, cad);
+	free(text);
+	return (text_aux);
+}
+
+static char	*leer(int fd, char *text)
+{
+	int		bytes_read;
+	char	*cad;
+
+	if (text == NULL)
+		text = ft_calloc(1, 1);
+	cad = (char *)ft_calloc(BUFFER_SIZE +1, sizeof(char));
+	if (!cad)
 		return (NULL);
-	while (last_read > 0)
+	bytes_read = 1;
+	while (bytes_read > 0)
 	{
-		last_read = read(fd, buff_tmp, BUFFER_SIZE);
-		if (last_read == -1)
+		bytes_read = read(fd, cad, BUFFER_SIZE);
+		if (bytes_read == -1)
 		{
-			free(buff_tmp);
+			free(cad);
 			return (NULL);
 		}
-		buff_tmp[last_read] = '\0';
-		aux = ft_strjoin(buffer, buff_tmp);
-		free(buffer);
-		buffer = aux;
-		if (ft_strchr(buff_tmp, '\n'))
+		cad[bytes_read] = 0;
+		text = exchange(text, cad);
+		if (ft_strchr(text, '\n'))
 			break ;
 	}
-	free(buff_tmp);
-	return (buffer);
+	free(cad);
+	return (text);
 }
 
-static char	*get_line(char *buffer)
+char	*obtain_line(char *text)
 {
-	char	*line;
+	char	*res;
 	int		i;
 
 	i = 0;
-	if (!buffer[i])
+	if (!text[i])
 		return (NULL);
-	while (buffer[i] && buffer[i] != '\n')
+	while (text[i] && text[i] != '\n')
 		i++;
-	line = (char *)malloc((i + 2) * sizeof(char));
-	if (!line)
-		return (NULL);
-	ft_strlcpy(line, buffer, i + 2);
-	return (line);
-}
-
-static char	*rest_car(char *buffer)
-{
-	char	*rest;
-	int		i;
-	int		j;
-
+	res = NULL;
+	res = (char *)ft_calloc(i + 2, sizeof(char));
 	i = 0;
-	j = 0;
-	while (buffer[i] && buffer[i] != '\n')
-		i++;
-	if (!buffer[i])
+	while (text[i] && text[i] != '\n')
 	{
-		free(buffer);
+		res[i] = text[i];
+		i++;
+	}
+	if (text[i] && text[i] == '\n')
+		res[i] = '\n';
+	return (res);
+}
+
+char	*clean_text(char *text)
+{
+	char	*aux;
+	int		i;
+	int		a;
+
+	i = 0;
+	while (text[i] && text[i] != '\n')
+		i++;
+	if (!text[i])
+	{
+		free(text);
 		return (NULL);
 	}
-	rest = (char *)malloc((ft_strlen(buffer) + 1 - i) * sizeof(char));
-	if (!rest)
+	aux = NULL;
+	if (text[i] == '\n')
+		i++;
+	aux = (char *)ft_calloc((ft_strlen(text) - i) + 1, sizeof(char));
+	if (!aux)
 		return (NULL);
-	while (buffer[++i])
-		rest[j++] = buffer[i];
-	rest[j] = '\0';
-	free(buffer);
-	return (rest);
+	a = 0;
+	while (text[i])
+		aux[a++] = text[i++];
+	free(text);
+	return (aux);
 }
 
 char	*get_next_line(int fd)
 {
-	char		*next_line;
-	static char	*buffer[OPEN_MAX];
+	static char	*text[1024];
+	char		*line;
 
-	if (BUFFER_SIZE <= 0 || read(fd, 0, 0) || fd < 0)
-		return (NULL);
-	if (!buffer[fd])
+	line = NULL;
+	if (read(fd, 0, 0) < 0)
 	{
-		buffer[fd] = (char *)malloc(sizeof(char));
-		buffer[fd][0] = '\0';
-	}
-	buffer[fd] = read_fd(fd, buffer[fd]);
-	if (!buffer[fd])
+		if (text[fd] != NULL)
+		{
+			free(text[fd]);
+			text[fd] = NULL;
+		}
 		return (NULL);
-	next_line = get_line(buffer[fd]);
-	buffer[fd] = rest_car(buffer[fd]);
-	return (next_line);
+	}
+	if (fd < 0 || BUFFER_SIZE < 0)
+		return (NULL);
+	text[fd] = leer(fd, text[fd]);
+	if (!text[fd])
+		return (NULL);
+	line = obtain_line(text[fd]);
+	text[fd] = clean_text(text[fd]);
+	return (line);
 }

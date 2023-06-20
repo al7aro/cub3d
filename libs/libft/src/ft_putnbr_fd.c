@@ -3,30 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alfgarci <alfgarci@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/15 21:23:18 by alfgarci          #+#    #+#             */
-/*   Updated: 2022/09/25 16:31:01 by alfgarci         ###   ########.fr       */
+/*   Created: 2022/09/13 14:51:43 by ralopez-          #+#    #+#             */
+/*   Updated: 2023/06/20 14:19:42 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+int	excep_case(int n, int fd)
 {
 	if (n == -2147483648)
 	{
-		ft_putstr_fd("-2147483648", fd);
-		return ;
+		n = 147483648;
+		ft_putchar_fd('-', fd);
+		ft_putchar_fd('2', fd);
 	}
-	if (n < 0)
+	return (n);
+}
+
+void	ft_putnbr_fd(int n, int fd)
+{
+	int		a[10];
+	int		i;
+	char	c;
+
+	i = 0;
+	if (n == -2147483648)
+		n = excep_case(n, fd);
+	if (n < 0 && n != -2147483648)
 	{
 		ft_putchar_fd('-', fd);
-		n *= -1;
+		n = n * -1;
 	}
-	if (n > 9)
+	if (n == 0)
+		ft_putchar_fd('0', fd);
+	while (n != 0 && n != -2147483648)
 	{
-		ft_putnbr_fd(n / 10, fd);
+		a[i] = (n % 10);
+		n = (n / 10);
+		i++;
 	}
-	ft_putchar_fd(n % 10 + 48, fd);
+	while (--i >= 0 && n != -2147483648)
+	{
+		c = a[i] + '0';
+		ft_putchar_fd(c, fd);
+	}
 }

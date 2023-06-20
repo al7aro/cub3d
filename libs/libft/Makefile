@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/09/18 18:44:21 by alfgarci          #+#    #+#              #
-#    Updated: 2023/04/22 20:38:26 by alopez-g         ###   ########.fr        #
+#    Created: 2022/09/18 18:44:21 by alopez-g          #+#    #+#              #
+#    Updated: 2023/06/20 14:25:29 by alopez-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,12 +57,7 @@ SRCS	=	${SRC_DIR}/ft_atoi.c \
 			${SRC_DIR}/ft_lstiter.c \
 			${SRC_DIR}/ft_lstmap.c \
 			${SRC_DIR}/get_next_line.c \
-			${SRC_DIR}/ft_printf_utils.c \
-			${SRC_DIR}/ft_puthex.c \
-			${SRC_DIR}/ft_putmem.c \
-			${SRC_DIR}/ft_putunsig.c \
-			${SRC_DIR}/ft_printf.c
-
+			${SRC_DIR}/get_next_line_utils.c
 OBJS 	=	${SRCS:.c=.o}
 
 INC 	=	include/
