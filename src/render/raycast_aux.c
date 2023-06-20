@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_aux.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralopez- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 08:02:19 by ralopez-          #+#    #+#             */
-/*   Updated: 2023/06/20 08:02:22 by ralopez-         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:24:42 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	clean_prev_ray(t_ray **ray)
 }
 
 void	cielling_floor(t_scene *scene, t_img *img, t_ray *ray_aux)
-{	
+{
 	t_line	line_sky;
 
 	line_sky.x0 = ray_aux->line->x0;
@@ -90,7 +90,7 @@ void	cielling_floor(t_scene *scene, t_img *img, t_ray *ray_aux)
 	draw_line(img, line_sky, scene->col[FLOOR]);
 }
 
-void	draw_wall(t_img *img, t_ray *ray_aux)
+void	draw_wall(t_scene *scene, t_ray *ray_aux)
 {
 	ray_aux->percert_x = (ray_aux->wall_x_hit / TILE_SIZE)
 		- floor(ray_aux->wall_x_hit / TILE_SIZE);
@@ -99,15 +99,15 @@ void	draw_wall(t_img *img, t_ray *ray_aux)
 	if (ray_aux->wall_hit_hor)
 	{
 		if (ray_aux->is_up)
-			draw_line(img, *ray_aux->line, rbg_to_int(255, 0, 0));
+			texture_vline(scene, ray_aux, NORTH);
 		else
-			draw_line(img, *ray_aux->line, rbg_to_int(0, 255, 0));
+			texture_vline(scene, ray_aux, SOUTH);
 	}
 	else
 	{
 		if (ray_aux->is_left)
-			draw_line(img, *ray_aux->line, rbg_to_int(0, 0, 255));
+			texture_vline(scene, ray_aux, WEST);
 		else
-			draw_line(img, *ray_aux->line, rbg_to_int(255, 255, 0));
+			texture_vline(scene, ray_aux, EAST);
 	}
 }

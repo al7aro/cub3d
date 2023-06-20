@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 00:08:46 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/18 23:02:10 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:24:48 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	init_ray(t_ray *ray);
 void	clean_prev_ray(t_ray **ray);
 void	calculate_hight(t_ray *ray, int column, double angle);
 void	cielling_floor(t_scene *scene, t_img *img, t_ray *ray_aux);
-void	draw_wall(t_img *img, t_ray *ray_aux);
+void	draw_wall(t_scene *scene, t_ray *ray_aux);
 
 /* horizontal_ray */
 void	horizontal_ray(t_scene *s, t_ray *ray);
