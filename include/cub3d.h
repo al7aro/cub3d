@@ -36,7 +36,8 @@
 # define SCENE 0
 
 /* Player */
-# define PLAYER_SPEED 5
+# define PLAYER_SPEED (0.35 * TILE_SIZE)
+# define ROTATION_SPEED 7 * (M_PI / 180)
 
 # include "math_cub.h"
 # include "render.h"
