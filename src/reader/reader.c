@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:24:14 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/21 20:54:13 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/21 21:02:35 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_map_error	reader(t_scene *s, char *const path)
 
 	error_list_init(&err_list);
 	fd = open(path, O_RDONLY);
-	if (-1 == fd || ft_strncmp(ft_strchr(path, '.'), ".cub", 5))
+	if (-1 == fd || ft_strncmp(ft_strrchr(path, '.'), ".cub", 5))
 	{
 		error_list_add(&err_list, error_new(BAD_FILE));
 		if (fd != -1)

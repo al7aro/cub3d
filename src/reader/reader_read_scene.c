@@ -6,11 +6,23 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:24:12 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/21 19:43:10 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/21 21:10:04 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "reader.h"
+
+static char	is_tex_name_valid(char *path)
+{
+	char	ret;
+
+	ret = 1;
+	if (ft_strncmp(ft_strrchr(path, '.'), ".xpm", 5))
+		ret = 0;
+	if (path)
+		free(path);
+	return (ret);
+}
 
 void	reader_texture(t_scene *s, char *const line,
 	t_error_list *err, size_t type)
@@ -24,8 +36,6 @@ void	reader_texture(t_scene *s, char *const line,
 	tex_path = ft_substr(line + start, 0, end);
 	s->tex[type].img = mlx_xpm_file_to_image(s->mlx->mlx, tex_path,
 			&s->tex[type].w, &s->tex[type].h);
-	if (tex_path)
-		free(tex_path);
 	end += skip_space(line + end + 1) + 1;
 	s->tex[type].anim_size = ((double)ft_atoi(line + end));
 	if (s->tex[type].anim_size == 0)
@@ -33,7 +43,7 @@ void	reader_texture(t_scene *s, char *const line,
 	end += skip_num(line + end);
 	end += skip_space(line + end);
 	if ((*(line + end) != '\0' && *(line + end) != '#' && *(line + end) != '\n')
-		|| s->tex[type].anim_size <= 0
+		|| s->tex[type].anim_size <= 0 || !is_tex_name_valid(tex_path)
 		|| s->tex[type].anim_size >= s->tex[type].w || !s->tex[type].img)
 		return (error_list_add(err, error_new(BAD_TEXTURE)));
 	s->tex[type].w = s->tex[type].w / s->tex[type].anim_size;
