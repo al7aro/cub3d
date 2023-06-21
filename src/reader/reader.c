@@ -6,15 +6,13 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:24:14 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/20 15:26:25 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/21 17:00:41 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "reader.h"
 
-void	map_add_line(t_scene *s, char *const line);
-
-static void	parse_line(t_scene *s, char *const line, t_error_list *err)
+static char	*parse_line(t_scene *s, char *const line, t_error_list *err)
 {
 	size_t	i;
 
@@ -35,6 +33,7 @@ static void	parse_line(t_scene *s, char *const line, t_error_list *err)
 		map_add_line(s, line);
 	else if (!((*(line + i) == '#') || (*(line + i) == '\0')))
 		error_list_add(err, error_new(UNKNOWN_OBJECT));
+	return (line);
 }
 
 static void	is_item_missing(t_scene *s, t_error_list *err)
@@ -54,21 +53,21 @@ t_map_error	reader(t_scene *s, char *const path)
 	ret = OK;
 	fd = open(path, O_RDONLY);
 	if (-1 == fd || ft_strncmp(ft_strchr(path, '.'), ".cub", 5))
+	{
+		close(fd);
 		return (BAD_MAP);
+	}
 	error_list_init(&err_list);
 	line = get_next_line(fd);
 	while (line)
 	{
-		parse_line(s, line, &err_list);
-		free(line);
+		free(parse_line(s, line, &err_list));
 		line = get_next_line(fd);
 	}
-	map_add_line(s, " ");
 	reader_is_map_closed(s, &err_list);
 	is_item_missing(s, &err_list);
 	ret = (ft_lstsize(err_list.err) > 1);
-	error_list_log(&err_list);
-	error_list_delete(&err_list);
+	error_list_log_and_delete(&err_list);
 	close(fd);
 	return (ret);
 }

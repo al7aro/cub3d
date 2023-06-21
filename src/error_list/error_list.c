@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:24:04 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/19 15:04:05 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/21 16:57:36 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,10 @@ void	error_list_log(t_error_list *err_list)
 void	error_list_delete(t_error_list *err_list)
 {
 	ft_lstclear(&err_list->err, error_delete);
+}
+
+void	error_list_log_and_delete(t_error_list *err_list)
+{
+	error_list_log(err_list);
+	error_list_delete(err_list);
 }

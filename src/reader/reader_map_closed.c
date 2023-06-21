@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 22:42:48 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/21 00:04:03 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/21 16:56:06 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	reader_is_map_closed(t_scene *scene, t_error_list *err)
 	size_t	j;
 	char	player;
 
+	map_add_line(scene, " ");
 	player = 0;
 	m = scene->map;
 	j = 0;
