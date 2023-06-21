@@ -99,8 +99,8 @@ typedef struct s_ray
 	int			is_down;
 	int			is_left;
 	int			is_right;
-	int			ver_x_step;
-	int			ver_y_step;
+	double		ver_x_step;
+	double		ver_y_step;
 	double		hor_x_step;
 	double		hor_y_step;
 	int			wall_hit_hor;
