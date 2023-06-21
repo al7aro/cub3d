@@ -38,6 +38,10 @@ void	mlx_setup(t_scene *scene)
 	scene->mlx = (t_mlx *)malloc(sizeof(t_mlx));
 	scene->mlx->mlx = mlx_init();
 	scene->mlx->win = (void *)0;
+	scene->mlx->img[SCENE].img = (void *)0;
+	scene->mlx->img[SCENE].addr = (void *)0;
+	scene->mlx->img[MINIMAP].img = (void *)0;
+	scene->mlx->img[MINIMAP].addr = (void *)0;
 }
 
 /*

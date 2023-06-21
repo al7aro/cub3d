@@ -50,11 +50,11 @@ t_map_error	reader(t_scene *s, char *const path)
 	t_error_list	err_list;
 	char			ret;
 
-	ret = OK;
 	fd = open(path, O_RDONLY);
 	if (-1 == fd || ft_strncmp(ft_strchr(path, '.'), ".cub", 5))
 	{
-		close(fd);
+		if (fd != -1)
+			close(fd);
 		return (BAD_MAP);
 	}
 	error_list_init(&err_list);

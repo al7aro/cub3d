@@ -37,10 +37,7 @@ int	main(int argc, char **argv)
 	scene_setup(&scene);
 	mlx_setup(&scene);
 	if (OK != reader(&scene, *(argv + 1)))
-	{
 		scene_clean(&scene);
-		return (-1);
-	}
 	mlx_setup_init(&scene);
 	printf("\n~mlx_loop running~\n");
 	mlx_hook(scene.mlx->win, 17, 0, clean_exit, &scene);
