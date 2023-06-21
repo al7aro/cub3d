@@ -19,7 +19,7 @@ char	*ft_substr(char const *cad, unsigned int start, size_t len)
 
 	i = 0;
 	sub = NULL;
-	if (len < 0)
+	if ((int)len < 0)
 		return (NULL);
 	if (cad != NULL)
 	{
