@@ -20,7 +20,7 @@ static char	*resize_line(char *str, size_t size)
 
 	i = -1;
 	str_size = ft_strlen(str);
-	new_line = (char *)malloc(sizeof(char) * size + 1 + 1);
+	new_line = (char *)malloc(sizeof(char) * size + 1);
 	while (++i < size)
 	{
 		if (i >= str_size)
@@ -33,6 +33,7 @@ static char	*resize_line(char *str, size_t size)
 				new_line[i] = str[i];
 		}
 	}
+	new_line[i] = 0;
 	if (str)
 		free(str);
 	return (new_line);
