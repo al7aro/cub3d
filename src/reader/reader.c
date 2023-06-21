@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:24:14 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/21 19:47:02 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/21 20:08:45 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ t_map_error	reader(t_scene *s, char *const path)
 	int				fd;
 	char			*line;
 	t_error_list	err_list;
+	int				ret;
 
 	error_list_init(&err_list);
 	fd = open(path, O_RDONLY);
@@ -67,7 +68,8 @@ t_map_error	reader(t_scene *s, char *const path)
 	}
 	reader_is_map_closed(s, &err_list);
 	is_item_missing(s, &err_list);
+	ret = (ft_lstsize(err_list.err) > 1);
 	error_list_log_and_delete(&err_list);
 	close(fd);
-	return ((ft_lstsize(err_list.err) > 1));
+	return (ret);
 }
