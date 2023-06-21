@@ -190,3 +190,11 @@ int mlx_loop_hook(mlx_ptr_t *mlx_ptr, void (*fct)(void *), void *param)
 
   return (0);
 }
+
+void mlx_destroy_display(void *mlx_ptr)
+{
+  mlx_ptr_t *mlx = mlx_ptr;
+  if (mlx == NULL)
+    return;
+  mlx_destroy_image(mlx, mlx->font);
+}

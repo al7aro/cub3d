@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 00:53:16 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/21 20:54:13 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/21 22:15:33 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ void	scene_clean(t_scene *s)
 	{
 		if (s->mlx->win)
 			mlx_destroy_window(s->mlx->mlx, s->mlx->win);
+		mlx_destroy_display(s->mlx->mlx);
+		free(s->mlx->mlx);
 		free(s->mlx);
 	}
 }
