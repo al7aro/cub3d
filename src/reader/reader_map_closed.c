@@ -14,8 +14,8 @@
 
 static char	set_player_pos(t_scene *scene, int x, int y, int position)
 {
-	scene->player.pos.x = (double)((x - 0.5) * TILE_SIZE);
-	scene->player.pos.y = (double)((y - 0.5) * TILE_SIZE);
+	scene->player.pos.x = (double)((x + 0.5) * TILE_SIZE);
+	scene->player.pos.y = (double)((y + 0.5) * TILE_SIZE);
 	if (position == 'N')
 		scene->player.dir.x = 3 * M_PI_2;
 	else if (position == 'S')
