@@ -6,7 +6,7 @@
 #    By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/25 01:42:35 by alopez-g          #+#    #+#              #
-#    Updated: 2023/06/01 01:15:26 by alopez-g         ###   ########.fr        #
+#    Updated: 2023/06/21 19:53:17 by alopez-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,7 @@ fclean: clean
 re: fclean all
 
 n:
-	norminette ${SRC} ${H}
+	norminette ${LIBFT_LIB_DIR}/src ${LIBFT_LIB_DIR}/include ${SRC} ${H}
 
 #----- IMPICIT RULES -----
 $(addprefix $(OBJ_DIR)/, %.o):	$(addprefix $(SRC_DIR)/, %.c) $(H)

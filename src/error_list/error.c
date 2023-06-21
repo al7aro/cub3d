@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:24:06 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/20 15:41:18 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/21 19:45:53 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	error_log(void *content)
 			printf("["STR_PURPLE"BAD_TEXTURE"STR_RESET"]\n");
 		else if (BAD_MAP == err->type)
 			printf("["STR_PURPLE"BAD_MAP"STR_RESET"]\n");
+		else if (BAD_FILE == err->type)
+			printf("["STR_PURPLE"BAD_FILE"STR_RESET"]\n");
 		else
 			printf("["STR_PURPLE"Unknown"STR_RESET"]\n");
 	}

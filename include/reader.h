@@ -33,6 +33,7 @@ typedef enum e_map_error
 	BAD_SYNTAX,
 	BAD_TEXTURE,
 	BAD_MAP,
+	BAD_FILE,
 	BAD_PLAYER
 }				t_map_error;
 
