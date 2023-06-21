@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 00:53:16 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/21 16:54:27 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/21 20:54:13 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	scene_setup(t_scene *s)
 	s->time_sim = 0;
 	s->anim_current = 0;
 	s->render_minimap = 0;
+	s->map_error_aux = 0;
 }
 
 void	mlx_setup(t_scene *scene)

@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 01:03:56 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/20 23:50:56 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/21 20:54:13 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ typedef struct s_scene
 	t_player	player;
 	t_ray		**ray;
 	char		render_minimap;
+	char		map_error_aux;
 }				t_scene;
 
 #endif
