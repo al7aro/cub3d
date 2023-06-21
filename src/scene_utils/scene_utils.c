@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 00:53:16 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/20 16:00:27 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/21 16:54:27 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,13 @@ void	mlx_setup(t_scene *scene)
 {
 	scene->mlx = (t_mlx *)malloc(sizeof(t_mlx));
 	scene->mlx->mlx = mlx_init();
+	scene->mlx->win = (void *)0;
 }
 
+/*
+		// if (s->mlx->mlx)
+		// 	free(s->mlx->mlx);
+*/
 void	mlx_setup_init(t_scene *s)
 {
 	s->mlx->img[SCENE].res = (t_vec2){.x = SCENE_WIDTH, .y = SCENE_HEIGHT};
@@ -72,6 +77,8 @@ void	scene_clean(t_scene *s)
 		mlx_destroy_image(s->mlx->mlx, s->tex[EAST].img);
 	if (s->mlx->img[SCENE].img)
 		mlx_destroy_image(s->mlx->mlx, s->mlx->img[SCENE].img);
+	if (s->mlx->img[MINIMAP].img)
+		mlx_destroy_image(s->mlx->mlx, s->mlx->img[MINIMAP].img);
 	while (--s->map_size.y >= 0)
 		if (s->map[(int)s->map_size.y])
 			free(s->map[(int)s->map_size.y]);
@@ -81,8 +88,6 @@ void	scene_clean(t_scene *s)
 	{
 		if (s->mlx->win)
 			mlx_destroy_window(s->mlx->mlx, s->mlx->win);
-		if (s->mlx->mlx)
-			free(s->mlx->mlx);
 		free(s->mlx);
 	}
 }
