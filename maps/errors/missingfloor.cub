@@ -1,12 +1,10 @@
-NO ./assets/textures/N.xpm 1 # Texture of north-facing walls
-SO ./assets/textures/S.xpm 1 # Texture of south-facing walls
-WE ./assets/textures/W.xpm 1 # Texture of west-facing walls
-EA ./assets/textures/E.xpm 1 # Texture of east-facing walls
+NO ./assets/textures/N.xpm 1
+SO ./assets/textures/S.xpm 1
+WE ./assets/textures/W.xpm 1
+EA ./assets/textures/E.xpm 1
 
 F
-C 100,100,255							# Ceilling color
-
-# Closed Map (Without #)
+C 100,100,255
 
 11111111111111111111111111111111
 10000000000000000000000000000001

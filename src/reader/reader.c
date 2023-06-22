@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:24:14 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/21 21:02:35 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/23 00:09:48 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static char	*parse_line(t_scene *s, char *const line, t_error_list *err)
 			s->map_error_aux = 3;
 		map_add_line(s, line);
 	}
-	else if (!((*(line + i) == '#') || (*(line + i) == '\0')))
+	else if (*(line + i) != '\0')
 		error_list_add(err, error_new(BAD_MAP));
 	else if (*(line + i) == '\0' && s->map_error_aux == 1)
 		s->map_error_aux = 2;

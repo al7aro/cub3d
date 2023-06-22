@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 20:11:27 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/19 15:21:06 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/22 23:01:09 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	map_add_line(t_scene *s, char *const line)
 	i = -1;
 	s->map_size.y++;
 	if (s->map_size.x < ft_strlen(line))
-		s->map_size.x = ft_strlen(line) + 1;
+		s->map_size.x = ft_strlen(line) + 2;
 	new_map = (char **)malloc(sizeof(char *) * s->map_size.y);
 	while (++i < s->map_size.y - 1)
 		new_map[i] = resize_line(s->map[i], s->map_size.x);

@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:24:12 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/21 21:10:04 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/23 00:09:09 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	reader_texture(t_scene *s, char *const line,
 	size_t	end;
 	char	*tex_path;
 
+	if (s->tex[type].img || !is_space(*line) || !*(line + skip_space(line)))
+		return (error_list_add(err, error_new(BAD_TEXTURE)));
 	start = skip_space(line);
 	end = skip_to_space(line + start);
 	tex_path = ft_substr(line + start, 0, end);
@@ -42,8 +44,9 @@ void	reader_texture(t_scene *s, char *const line,
 		s->tex[type].anim_size = 1;
 	end += skip_num(line + end);
 	end += skip_space(line + end);
-	if ((*(line + end) != '\0' && *(line + end) != '#' && *(line + end) != '\n')
-		|| s->tex[type].anim_size <= 0 || !is_tex_name_valid(tex_path)
+	if (!is_tex_name_valid(tex_path)
+		|| (*(line + end) != '\0'
+			&& *(line + end) != '\n') || s->tex[type].anim_size <= 0
 		|| s->tex[type].anim_size >= s->tex[type].w || !s->tex[type].img)
 		return (error_list_add(err, error_new(BAD_TEXTURE)));
 	s->tex[type].w = s->tex[type].w / s->tex[type].anim_size;
@@ -65,6 +68,6 @@ void	reader_room_color(t_scene *s, char *const line,
 	if (s->col[type] == -1 || check_color(line, &i) == -1)
 		return (error_list_add(err, error_new(BAD_SYNTAX)));
 	i += skip_space(line + i);
-	if (*(line + i) != '\0' && *(line + i) != '#' && *(line + i) != '\n')
+	if (*(line + i) != '\0' && *(line + i) != '\n')
 		return (error_list_add(err, error_new(BAD_SYNTAX)));
 }

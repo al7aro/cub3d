@@ -24,15 +24,15 @@
 ✔ Example of correct map:
 
 ```
-NO ./assets/textures/north_texture.xmp	# Texture of north-facing walls
-SO ./assets/textures/south_texture.xmp	# Texture of south-facing walls
-WE ./assets/textures/west_texture.xmp	# Texture of west-facing walls
-EA ./assets/textures/east_texture.xmp	# Texture of east-facing walls
+NO ./assets/textures/north_texture.xmp
+SO ./assets/textures/south_texture.xmp
+WE ./assets/textures/west_texture.xmp
+EA ./assets/textures/east_texture.xmp
 
-F 50,100,10		# Floor color
-C 100,100,100	# Ceilling color
+F 50,100,10
+C 100,100,100
 
-# Closed Map (Without #)
+
 
 11111111111111111111111111111111
 1N000000000000000000000000000001
@@ -63,15 +63,15 @@ C 100,100,100	# Ceilling color
 ❌ Example of incorrect map:
 
 ```
-NO ./assets/textures/north_texture.xmp	# Texture of north-facing walls
-SO ./assets/textures/south_texture.xmp	# Texture of south-facing walls
-WE ./assets/textures/west_texture.xmp	# Texture of west-facing walls
-E ./assets/textures/east_texture.xmp	# Texture of east-facing walls
+NO ./assets/textures/north_texture.xmp
+SO ./assets/textures/south_texture.xmp
+WE ./assets/textures/west_texture.xmp
+E ./assets/textures/east_texture.xmp
 
-F 50,100,300	# Floor color
-C 100,100,100	# Ceilling color
+F 50,100,300
+C 100,100,100
 
-# Closed Map (Without #)
+
 
 11111111111111111111111111111111
 1N000000000000000000000000000001

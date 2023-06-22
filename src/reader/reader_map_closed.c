@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 22:42:48 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/21 16:56:06 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/22 22:53:47 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,29 @@ static char	set_player_pos(t_scene *scene, int x, int y, int position)
 	return (1);
 }
 
+static char	is_player(char position)
+{
+	return (position == 'N' || position == 'S'
+		|| position == 'E' || position == 'W');
+}
+
 static char	wall_is_open(char **m, int x, int y)
 {
 	char	flag;
 
 	flag = 0;
-	flag = (*(*(m + y) + x) == '0'
-			&& (*(*(m + y) + x + 1) == 32 || *(*(m + y) + x - 1) == 32
-				|| *(*(m + y + 1) + x) == 32 || *(*(m + y - 1) + x) == 32));
+	if ((*(*(m + y) + x) == '0'
+			|| *(*(m + y) + x) == 'N'
+			|| *(*(m + y) + x) == 'S'
+			|| *(*(m + y) + x) == 'E'
+			|| *(*(m + y) + x) == 'W')
+		&& (*(*(m + y) + x + 1) == 32 || *(*(m + y) + x - 1) == 32
+			|| *(*(m + y + 1) + x) == 32 || *(*(m + y - 1) + x) == 32))
+		flag = 1;
+	if ((*(*(m + y) + x) != '1' && *(*(m + y) + x) != '0'
+			&& *(*(m + y) + x) != ' ' && !is_player(*(*(m + y) + x))))
+		flag = 1;
 	return (flag);
-}
-
-static char	is_player(char position)
-{
-	return (position == 'N' || position == 'S'
-		|| position == 'E' || position == 'W');
 }
 
 /*

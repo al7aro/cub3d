@@ -1,14 +1,11 @@
-NO ./assets/textures/N.xpm	# Texture of north-facing walls
-SO ./assets/textures/S.xpm	# Texture of south-facing walls
-WE ./assets/textures/W.xpm	# Texture of west-facing walls
-EA ./assets/textures/E.xpm	# Texture of east-facing walls
+NO ./assets/textures/N.xpm
+SO ./assets/textures/S.xpm
+WE ./assets/textures/W.xpm
+EA ./assets/textures/E.xpm
 
-F 50,100,10								# Floor color
-C 100,100,255							# Ceilling color
-
-# Closed Map (Without #)
+F 50,100,10
+C 100,100,255
 
 111
-
 1N1
 111
