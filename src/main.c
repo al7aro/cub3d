@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:23:44 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/22 22:49:41 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/23 00:42:12 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	clean_exit(void *scene_void)
 
 void	l(void)
 {
-	system("leaks cub3d");
+	system("leaks cub3D");
 }
 
 int	main(int argc, char **argv)
