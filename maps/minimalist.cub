@@ -1,12 +1,11 @@
-NO ./assets/textures/north_texture.xmp	# Texture of north-facing walls
-SO ./assets/textures/south_texture.xmp	# Texture of south-facing walls
-WE ./assets/textures/west_texture.xmp	# Texture of west-facing walls
-EA ./assets/textures/east_texture.xmp	# Texture of east-facing walls
+NO ./assets/textures/north_texture.xpm 1
+SO ./assets/textures/south_texture.xpm 1
+WE ./assets/textures/west_texture.xpm 1
+EA ./assets/textures/east_texture.xpm 1
 
-F 50,100,10							# Floor color
-C 100,100,100							# Ceilling color
+F 50,100,10
+C 100,100,100
 
-# Closed Map (Without #)
         1111111111111111111111111
         1000000000110000000000001
         1011000001110000000000001

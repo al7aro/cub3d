@@ -15,6 +15,7 @@
 
 # include <fcntl.h>
 # include <stdio.h>
+# include <stdlib.h>
 # include "libft.h"
 # include "cub3d.h"
 # include "color.h"
@@ -30,17 +31,15 @@ typedef enum e_map_error
 	UNKNOWN_OBJECT,
 	OUT_OF_RANGE,
 	BAD_SYNTAX,
-	TOO_MANY_OBJ,
-	MAP_NOT_FOUND,
 	BAD_TEXTURE,
 	BAD_MAP,
-	MAP_NOT_CLOSED
+	BAD_FILE,
+	BAD_PLAYER
 }				t_map_error;
 
 typedef struct s_error
 {
 	t_map_error	type;
-	char		*line;
 }					t_error;
 
 typedef struct s_error_list
@@ -50,12 +49,13 @@ typedef struct s_error_list
 
 void		error_delete(void *content);
 void		error_log(void *content);
-void		*error_new(t_map_error type, char *const line);
+void		*error_new(t_map_error type);
 
 void		error_list_init(t_error_list *err_list);
 void		error_list_log(t_error_list *err_list);
 void		error_list_delete(t_error_list *err_list);
 void		error_list_add(t_error_list *err_list, t_error *err);
+void		error_list_log_and_delete(t_error_list *err_list);
 
 /* Reader */
 t_map_error	reader(t_scene *s, char *const path);
@@ -65,6 +65,7 @@ void		reader_room_color(t_scene *s, char *const line,
 				t_error_list *err, size_t type);
 void		reader_map(t_scene *s, char *const line, t_error_list *err);
 void		reader_is_map_closed(t_scene *s, t_error_list *err);
+void		map_add_line(t_scene *s, char *const line);
 
 int			skip_space(char *const line);
 int			skip_to_space(char *const line);

@@ -6,7 +6,7 @@
 /*   By: alopez-g <alopez-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 23:33:54 by alopez-g          #+#    #+#             */
-/*   Updated: 2023/06/08 13:02:02 by alopez-g         ###   ########.fr       */
+/*   Updated: 2023/06/21 22:11:32 by alopez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 int	esc_exit(int keycode, t_scene *s)
 {
 	if (keycode == ESC)
-	{
-		scene_clean(s);
-		exit(0);
-	}
+		clean_exit(s);
 	return (1);
 }
